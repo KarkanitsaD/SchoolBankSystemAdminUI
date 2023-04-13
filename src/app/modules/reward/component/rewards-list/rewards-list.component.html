@@ -1,0 +1,64 @@
+<div class="filter">
+  <mat-form-field appearance="outline">
+    <mat-label>Имя</mat-label>
+    <input
+      matInput
+      placeholder="Введите имя"
+      [formControl]="filterForm.controls['description']"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Минимальна сумма</mat-label>
+    <input
+      matInput
+      type="number"
+      min="0"
+      placeholder="Введите фамилию"
+      [formControl]="filterForm.controls['minSum']"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Максимальная сумма</mat-label>
+    <input
+      matInput
+      type="number"
+      min="0"
+      placeholder="Введите телефон"
+      [formControl]="filterForm.controls['maxSum']"
+    >
+  </mat-form-field>
+
+  <div class="splitter"></div>
+
+  <button
+    mat-flat-button
+    color="primary"
+  >
+    Добавить вознаграждение
+  </button>
+</div>
+
+<div class="list-container">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+  >
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+    </ng-container>
+
+    <!-- Sum Column -->
+    <ng-container matColumnDef="sum">
+      <th mat-header-cell *matHeaderCellDef>Sum</th>
+      <td mat-cell *matCellDef="let row"> {{row.sum}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="rewardColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: rewardColumns;"></tr>
+  </table>
+</div>

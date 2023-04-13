@@ -1,0 +1,17 @@
+<div class="login-card">
+  <mat-form-field>
+    <mat-label>
+      Номер телефона
+    </mat-label>
+    <input matInput placeholder="Номер телефона" [formControl]="loginForm.controls['phone']">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>
+      Пароль
+    </mat-label>
+    <input matInput placeholder="Пароль" [formControl]="loginForm.controls['password']">
+  </mat-form-field>
+  <button mat-flat-button class="login-btn" color="primary" (click)="onLogin()">
+    Войти в систему
+  </button>
+</div>
