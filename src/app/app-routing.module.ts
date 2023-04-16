@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'rewards',
         loadChildren: () => import('./modules/reward/reward.module').then(m => m.RewardModule)
+      },
+      {
+        path: 'certificates',
+        loadChildren: () => import('./modules/certificate/certificate.module').then(m => m.CertificateModule)
       }
     ]
   },

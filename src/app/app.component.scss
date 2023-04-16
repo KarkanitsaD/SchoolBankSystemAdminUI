@@ -3,6 +3,10 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+
+  ::ng-deep .mat-mdc-tab-label-container {
+    background-color: aliceblue;
+  }
 }
 
 mat-toolbar {

@@ -1,1 +1,68 @@
-<p>teacher works!</p>
+<mat-card>
+    <mat-card-header>
+        Добавить учителя
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input
+                matInput
+                placeholder="Введите имя"
+                [formControl]="teacherForm.controls['name']" 
+            >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Фамилия</mat-label>
+            <input
+                matInput
+                placeholder="Введите фамилию"
+                [formControl]="teacherForm.controls['surname']"
+            >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Телефон</mat-label>
+            <input
+                matInput
+                placeholder="Введите телефон"
+                [formControl]="teacherForm.controls['phone']"
+            >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Пароль</mat-label>
+            <input
+                matInput
+                type="password"
+                placeholder="Введите пароль"
+                [formControl]="teacherForm.controls['password']"
+            >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Подтвердите пароль</mat-label>
+            <input
+                matInput
+                type="password"
+                placeholder="Введите пароль"
+                [formControl]="teacherForm.controls['confirmPassword']"
+            >
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button
+            mat-raised-button
+            (click)="onCancel()"
+        >
+            Отменить
+        </button>
+        <button
+            mat-flat-button
+            color="primary"
+            [disabled]="teacherForm.invalid"
+        >
+            {{ data ? 'Изменить' : 'Добавить' }}
+        </button>
+    </mat-card-actions>
+</mat-card>

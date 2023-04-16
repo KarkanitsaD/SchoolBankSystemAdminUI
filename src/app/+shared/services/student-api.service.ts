@@ -15,4 +15,12 @@ export class StudentApiService {
   getStudentList(filter: StudentFilterModel): Observable<StudentModel[]> {
     return this.apiService.post<StudentModel[]>(`${this.baseUrl}/search`, filter);
   }
+
+  updateStudent(model: StudentModel): Observable<any> {
+    return this.apiService.put<any>(this.baseUrl, model);
+  }
+
+  deleteStudent(id: string): Observable<any> {
+    return this.apiService.delete<any>(`${this.baseUrl}/${id}`);
+  }
 }

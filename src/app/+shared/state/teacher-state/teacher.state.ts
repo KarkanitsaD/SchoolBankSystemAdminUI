@@ -1,17 +1,22 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {TeacherStateModel} from "./teacher-state.model";
-import {inject} from "@angular/core";
-import {TeacherApiService} from "../../services/teacher-api.service";
-import {TeacherModel} from "../../models/teacher.model";
-import {LoadTeachers} from "./teacher-state.actions";
-import {Observable, tap} from "rxjs";
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { TeacherStateModel } from './teacher-state.model';
+import { inject } from '@angular/core';
+import { TeacherApiService } from '../../services/teacher-api.service';
+import { TeacherModel } from '../../models/teacher.model';
+import {
+  DeleteTeacher,
+  LoadTeachers,
+  UpdateTeacher,
+} from './teacher-state.actions';
+import { Observable, tap } from 'rxjs';
+import { patch, removeItem } from '@ngxs/store/operators';
 
 @State<TeacherStateModel>({
   name: 'teacher',
   defaults: {
     teachers: [],
-    teacher: null
-  }
+    teacher: null,
+  },
 })
 export class TeacherState {
   private apiService = inject(TeacherApiService);
@@ -22,12 +27,40 @@ export class TeacherState {
   }
 
   @Action(LoadTeachers)
-  loadStudents(ctx: StateContext<TeacherStateModel>, action: LoadTeachers): Observable<TeacherModel[]> {
-    return this.apiService.getTeacherList(action.filterModel)
-      .pipe(tap(x => {
+  loadStudents(
+    ctx: StateContext<TeacherStateModel>,
+    action: LoadTeachers
+  ): Observable<TeacherModel[]> {
+    return this.apiService.getTeacherList(action.filterModel).pipe(
+      tap((x) => {
         ctx.patchState({
-          teachers: x
-        })
-      }));
+          teachers: x,
+        });
+      })
+    );
+  }
+
+  @Action(DeleteTeacher)
+  deleteTeacher(
+    ctx: StateContext<TeacherStateModel>,
+    action: DeleteTeacher
+  ): Observable<any> {
+    return this.apiService.deleteTeacher(action.id).pipe(
+      tap(() => {
+        ctx.setState(
+          patch<TeacherStateModel>({
+            teachers: removeItem<TeacherModel>((x) => x.id === action.id),
+          })
+        );
+      })
+    );
+  }
+
+  @Action(UpdateTeacher)
+  updateTeacher(
+    _: StateContext<TeacherStateModel>,
+    action: UpdateTeacher
+  ): Observable<any> {
+    return this.apiService.updateTeacher(action.teacher);
   }
 }

@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>
+        {{ content }}
+    </mat-card-title>
+    <mat-card-actions>
+        <button
+            mat-flat-button
+            (click)="onCancel()"
+        >
+            Отменить
+        </button>
+        <button
+            mat-flat-button
+            color="primary"
+            (click)="onApply()"
+        >
+            Применить
+        </button>
+    </mat-card-actions>
+</mat-card>

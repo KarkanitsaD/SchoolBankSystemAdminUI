@@ -12,7 +12,19 @@ export class CertificateApiService {
   constructor(private apiService: ApiService) {
   }
 
-  getStudentList(filter: CertificateFilterModel): Observable<CertificateModel[]> {
+  getCertificateList(filter: CertificateFilterModel): Observable<CertificateModel[]> {
     return this.apiService.post<CertificateModel[]>(`${this.baseUrl}/search`, filter);
+  }
+
+  addCertificate(model: CertificateModel): Observable<CertificateModel> {
+    return this.apiService.post<CertificateModel>(this.baseUrl, model);
+  }
+
+  updateCertificate(model: CertificateModel): Observable<CertificateModel> {
+    return this.apiService.put<CertificateModel>(this.baseUrl, model);
+  }
+
+  deleteCertificate(id: string): Observable<any> {
+    return this.apiService.delete<any>(`${this.baseUrl}/${id}`);
   }
 }

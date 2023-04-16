@@ -35,6 +35,7 @@
   <button
     mat-flat-button
     color="primary"
+    (click)="onAdd()"
   >
     Добавить вознаграждение
   </button>
@@ -56,6 +57,22 @@
     <ng-container matColumnDef="sum">
       <th mat-header-cell *matHeaderCellDef>Sum</th>
       <td mat-cell *matCellDef="let row"> {{row.sum}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="onUpdate(row)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="rewardColumns; sticky: true"></tr>

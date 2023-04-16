@@ -15,4 +15,12 @@ export class TeacherApiService {
   getTeacherList(filter: TeacherFilterModel): Observable<TeacherModel[]> {
     return this.apiService.post<TeacherModel[]>(`${this.baseUrl}/search`, filter);
   }
+
+  updateTeacher(model: TeacherModel): Observable<any> {
+    return this.apiService.put<any>(this.baseUrl, model);
+  }
+
+  deleteTeacher(id: string): Observable<any> {
+    return this.apiService.delete<any>(`${this.baseUrl}/${id}`);
+  }
 }

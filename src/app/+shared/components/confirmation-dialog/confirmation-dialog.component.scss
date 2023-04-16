@@ -1,0 +1,8 @@
+mat-card {
+    width: 400px;
+    padding: 20px;
+
+    .mdc-card__actions {
+        justify-content: space-between;
+    }
+}

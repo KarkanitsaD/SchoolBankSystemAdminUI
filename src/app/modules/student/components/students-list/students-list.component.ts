@@ -4,7 +4,7 @@ import {StudentModel} from "../../../../+shared/models/student.model";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ObserverComponent} from "../../../../+shared/components/observer/observer.component";
 import {debounceTime, distinctUntilChanged, Subscription} from "rxjs";
-import {Store} from "@ngxs/store";
+import {Actions, Store, ofActionCompleted} from "@ngxs/store";
 import {StudentFilterModel} from "../../../../+shared/models/student-filter.model";
 import {LoadStudents} from "../../../../+shared/state/student-state/student-state.actions";
 import {StudentState} from "../../../../+shared/state/student-state/student.state";
@@ -26,12 +26,20 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
     maxSum: new FormControl<number>(null)
   });
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private actions: Actions
+  ) {
     super();
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.filterChangesSubscription(), this.listSubscription());
+    this.subscriptions.push(
+      this.filterChangesSubscription(),
+      this.listSubscription(),
+      // this.addSubscription(),
+      // this.updateSubscription()
+    );
     this.store.dispatch(new LoadStudents(this.filterForm.value));
   }
 
@@ -54,6 +62,23 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
     return this.store.select(StudentState.students).subscribe(x => {
       this.dataSource = new MatTableDataSource<StudentModel>(x);
     });
+  }
+
+  private addSubscription(): Subscription {
+    return this.actions.pipe(ofActionCompleted(null)).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  private updateSubscription(): Subscription {
+    return this.actions.pipe(ofActionCompleted(null)).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  private loadData(): void {
+    const formValue = this.filterForm.value;
+    this.store.dispatch(new LoadStudents(new StudentFilterModel(formValue)))
   }
 }
 

@@ -22,6 +22,7 @@ import {LocalStorageService} from "./+shared/services/local-storage.service";
 import {NgxsRouterPluginModule} from "@ngxs/router-plugin";
 import {MatTableModule} from "@angular/material/table";
 import {StudentModule} from "./modules/student/student.module";
+import {CertificateModule} from "./modules/certificate/certificate.module";
 import {StudentApiService} from "./+shared/services/student-api.service";
 import {StudentState} from "./+shared/state/student-state/student.state";
 import {AuthGuard} from "./+shared/guards/auth.guard";
@@ -31,12 +32,11 @@ import {TeacherApiService} from "./+shared/services/teacher-api.service";
 import {RewardApiService} from "./+shared/services/reward-api.service";
 import {CertificateApiService} from "./+shared/services/certificate-api.service";
 import {RewardState} from "./+shared/state/reward-state/reward.state";
+import { CertificateState } from './+shared/state/certificate-state/certificate.state';
+import { ConfirmationDialogComponent } from './+shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent
-  ],
+  declarations: [AppComponent, LoginComponent, ConfirmationDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,13 +46,20 @@ import {RewardState} from "./+shared/state/reward-state/reward.state";
     MatCardModule,
     MatInputModule,
     HttpClientModule,
-    NgxsModule.forRoot([AuthState, StudentState, TeacherState, RewardState]),
+    NgxsModule.forRoot([
+      AuthState,
+      StudentState,
+      TeacherState,
+      RewardState,
+      CertificateState,
+    ]),
     NgxsRouterPluginModule.forRoot(),
     ReactiveFormsModule,
     MatIconModule,
     MatTabsModule,
     MatTableModule,
-    StudentModule
+    StudentModule,
+    CertificateModule,
   ],
   providers: [
     ApiService,
@@ -70,11 +77,10 @@ import {RewardState} from "./+shared/state/reward-state/reward.state";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

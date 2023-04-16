@@ -5,6 +5,7 @@ import {AuthState} from "./+shared/state/auth-state/auth.state";
 import {Login, Logout} from "./+shared/state/auth-state/auth-state.actions";
 import {ObserverComponent} from "./+shared/components/observer/observer.component";
 import {Navigate} from "@ngxs/router-plugin";
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,23 @@ export class AppComponent extends ObserverComponent implements OnInit {
 
   onLogout(): void {
     this.store.dispatch(new Logout());
+  }
+
+  onNavigate(index: number): void {
+    switch(index) {
+      case 0:
+        this.store.dispatch(new Navigate(['students']));
+        break;
+      case 1: 
+        this.store.dispatch(new Navigate(['teachers']));
+        break;
+      case 2: 
+        this.store.dispatch(new Navigate(['rewards']));
+        break;
+      case 3: 
+        this.store.dispatch(new Navigate(['certificates']));
+        break;
+    }
   }
 
   private loginSubscription(): Subscription {
