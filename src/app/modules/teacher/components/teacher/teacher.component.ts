@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngxs/store';
+import { RegisterModel } from 'src/app/+shared/models/register.model';
 import { TeacherModel } from 'src/app/+shared/models/teacher.model';
-import { AuthApiService } from 'src/app/+shared/services/auth-api.service';
-import { TeacherApiService } from 'src/app/+shared/services/teacher-api.service';
+import { AddTeacher, UpdateTeacher } from 'src/app/+shared/state/teacher-state/teacher-state.actions';
 
 @Component({
   selector: 'app-teacher',
@@ -15,8 +16,7 @@ export class TeacherComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<TeacherComponent>,
-    private authApiService: AuthApiService,
-    private teacherApiService: TeacherApiService,
+    private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: TeacherModel
   ) {}
 
@@ -28,7 +28,7 @@ export class TeacherComponent implements OnInit {
     });
 
     if (!this.data) {
-      this.addPasswordControls();
+      this.addPasswordControl();
     }
   }
 
@@ -39,16 +39,16 @@ export class TeacherComponent implements OnInit {
   onApply(): void {
     const formValue = this.teacherForm.value;
     if (this.data) {
-      
+      formValue.id = this.data.id;
+      this.store.dispatch(new UpdateTeacher(new TeacherModel(formValue)));
     } else {
-
+      this.store.dispatch(new AddTeacher(new RegisterModel(formValue)));
     }
+    this.dialogRef.close();
   }
 
-  private addPasswordControls(): void {
+  private addPasswordControl(): void {
     const password = new FormControl<string>('', Validators.required);
-    const confirmPassword = new FormControl<string>('', Validators.required);
     this.teacherForm.addControl('password', password);
-    this.teacherForm.addControl('confirmPassword', confirmPassword);
   }
 }

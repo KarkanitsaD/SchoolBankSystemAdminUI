@@ -4,6 +4,7 @@ import {ApiService} from "./api.service";
 import {StudentFilterModel} from "../models/student-filter.model";
 import {Observable} from "rxjs";
 import {StudentModel} from "../models/student.model";
+import { RegisterModel } from "../models/register.model";
 
 @Injectable()
 export class StudentApiService {
@@ -22,5 +23,9 @@ export class StudentApiService {
 
   deleteStudent(id: string): Observable<any> {
     return this.apiService.delete<any>(`${this.baseUrl}/${id}`);
+  }
+
+  addTeacher(registerModel: RegisterModel): Observable<any> {
+    return this.apiService.post<any>(`${environment.api_url}/auth/register/student`, registerModel);
   }
 }

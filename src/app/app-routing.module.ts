@@ -9,20 +9,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'students',
-        loadChildren: () => import('./modules/student/student.module').then(m => m.StudentModule)
-      },
-      {
-        path: 'teachers',
-        loadChildren: () => import('./modules/teacher/teacher.module').then(m => m.TeacherModule)
-      },
-      {
-        path: 'rewards',
-        loadChildren: () => import('./modules/reward/reward.module').then(m => m.RewardModule)
-      },
-      {
-        path: 'certificates',
-        loadChildren: () => import('./modules/certificate/certificate.module').then(m => m.CertificateModule)
+        path: 'administration',
+        loadChildren: () => 
+          import('./modules/administration/administration.module').then(x => x.AdministrationModule)
       }
     ]
   },

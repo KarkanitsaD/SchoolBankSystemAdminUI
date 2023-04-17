@@ -34,23 +34,6 @@ export class AppComponent extends ObserverComponent implements OnInit {
     this.store.dispatch(new Logout());
   }
 
-  onNavigate(index: number): void {
-    switch(index) {
-      case 0:
-        this.store.dispatch(new Navigate(['students']));
-        break;
-      case 1: 
-        this.store.dispatch(new Navigate(['teachers']));
-        break;
-      case 2: 
-        this.store.dispatch(new Navigate(['rewards']));
-        break;
-      case 3: 
-        this.store.dispatch(new Navigate(['certificates']));
-        break;
-    }
-  }
-
   private loginSubscription(): Subscription {
     return this.actions$.pipe(ofActionSuccessful(Login)).subscribe(() => {
       this.store.dispatch(new Navigate(['students']));

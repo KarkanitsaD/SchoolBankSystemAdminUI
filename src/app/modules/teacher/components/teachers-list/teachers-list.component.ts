@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TeacherModel } from '../../../../+shared/models/teacher.model';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Actions, Store, ofActionCompleted } from '@ngxs/store';
 import { ObserverComponent } from '../../../../+shared/components/observer/observer.component';
 import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
-import { LoadTeachers } from '../../../../+shared/state/teacher-state/teacher-state.actions';
+import { AddTeacher, DeleteTeacher, LoadTeachers, UpdateTeacher } from '../../../../+shared/state/teacher-state/teacher-state.actions';
 import { TeacherState } from '../../../../+shared/state/teacher-state/teacher.state';
 import { TeacherFilterModel } from '../../../../+shared/models/teacher-filter.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,22 +27,26 @@ export class TeachersListComponent extends ObserverComponent implements OnInit {
     phone: new FormControl<string>(''),
   });
 
-  constructor(private store: Store, private dialog: MatDialog) {
+  constructor(private store: Store, private dialog: MatDialog, private actions: Actions) {
     super();
   }
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.filterChangesSubscription(),
-      this.listSubscription()
+      this.listSubscription(),
+      this.addSubscription(),
+      this.updateSubscription()
     );
-    this.store.dispatch(new LoadTeachers(this.filterForm.value));
+    this.loadData();
   }
 
-  onAddTeacher(): void {
-    this.dialog.open(TeacherComponent)
-      .afterClosed()
-      .subscribe();
+  onAdd(): void {
+    this.dialog.open(TeacherComponent);
+  }
+
+  onEdit(teacher: TeacherModel): void {
+    this.dialog.open(TeacherComponent, { data: teacher });
   }
 
   onDelete(teacher: TeacherModel): void {
@@ -52,7 +56,7 @@ export class TeachersListComponent extends ObserverComponent implements OnInit {
       })
       .afterClosed()
       .pipe(filter((x) => !!x))
-      .subscribe();
+      .subscribe(() => this.store.dispatch(new DeleteTeacher(teacher.id)));
   }
 
   private filterChangesSubscription(): Subscription {
@@ -73,5 +77,22 @@ export class TeachersListComponent extends ObserverComponent implements OnInit {
     return this.store.select(TeacherState.teachers).subscribe((x) => {
       this.dataSource = new MatTableDataSource<TeacherModel>(x);
     });
+  }
+
+  private addSubscription(): Subscription {
+    return this.actions.pipe(ofActionCompleted(AddTeacher)).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  private updateSubscription(): Subscription {
+    return this.actions.pipe(ofActionCompleted(UpdateTeacher)).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  private loadData(): void {
+    const formValue = this.filterForm.value;
+    this.store.dispatch(new LoadTeachers(new TeacherFilterModel(formValue)));
   }
 }

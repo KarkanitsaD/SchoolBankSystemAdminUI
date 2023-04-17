@@ -1,21 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {StudentModel} from "../../../../+shared/models/student.model";
-import {FormControl, FormGroup} from "@angular/forms";
-import {ObserverComponent} from "../../../../+shared/components/observer/observer.component";
-import {debounceTime, distinctUntilChanged, Subscription} from "rxjs";
-import {Actions, Store, ofActionCompleted} from "@ngxs/store";
-import {StudentFilterModel} from "../../../../+shared/models/student-filter.model";
-import {LoadStudents} from "../../../../+shared/state/student-state/student-state.actions";
-import {StudentState} from "../../../../+shared/state/student-state/student.state";
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { StudentModel } from '../../../../+shared/models/student.model';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ObserverComponent } from '../../../../+shared/components/observer/observer.component';
+import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
+import { Actions, Store, ofActionCompleted } from '@ngxs/store';
+import { StudentFilterModel } from '../../../../+shared/models/student-filter.model';
+import {
+  AddStudent,
+  DeleteStudent,
+  LoadStudents,
+  UpdateStudent,
+} from '../../../../+shared/state/student-state/student-state.actions';
+import { StudentState } from '../../../../+shared/state/student-state/student.state';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
+import { StudentComponent } from '../student/student.component';
 
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.scss']
+  styleUrls: ['./students-list.component.scss'],
 })
 export class StudentsListComponent extends ObserverComponent implements OnInit {
-  studentColumns: string[] = ['name', 'surname', 'phone', 'sum'];
+  studentColumns: string[] = ['name', 'surname', 'phone', 'sum', 'actions'];
   dataSource: MatTableDataSource<StudentModel>;
 
   filterForm: FormGroup = new FormGroup({
@@ -23,12 +31,13 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
     surname: new FormControl<string>(''),
     phone: new FormControl<string>(''),
     minSum: new FormControl<number>(null),
-    maxSum: new FormControl<number>(null)
+    maxSum: new FormControl<number>(null),
   });
 
   constructor(
     private store: Store,
-    private actions: Actions
+    private actions: Actions,
+    private dialog: MatDialog
   ) {
     super();
   }
@@ -37,10 +46,28 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
     this.subscriptions.push(
       this.filterChangesSubscription(),
       this.listSubscription(),
-      // this.addSubscription(),
-      // this.updateSubscription()
+      this.addSubscription(),
+      this.updateSubscription()
     );
     this.store.dispatch(new LoadStudents(this.filterForm.value));
+  }
+
+  onAdd(): void {
+    this.dialog.open(StudentComponent);
+  }
+
+  onEdit(student: StudentModel): void {
+    this.dialog.open(StudentComponent, { data: student });
+  }
+
+  onDelete(student: StudentModel): void {
+    this.dialog
+      .open(ConfirmationDialogComponent, {
+        data: `Вы уверены, что хотите удалить ${student.name} ${student.surname}?`,
+      })
+      .afterClosed()
+      .pipe(filter((x) => !!x))
+      .subscribe(() => this.store.dispatch(new DeleteStudent(student.id)));
   }
 
   private filterChangesSubscription(): Subscription {
@@ -48,37 +75,35 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(
-          (prev, curr) =>
-            JSON.stringify(prev) === JSON.stringify(curr)
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         )
       )
-      .subscribe(x => {
+      .subscribe((x) => {
         const filterModel = new StudentFilterModel(x);
         this.store.dispatch(new LoadStudents(filterModel));
       });
   }
 
   private listSubscription(): Subscription {
-    return this.store.select(StudentState.students).subscribe(x => {
+    return this.store.select(StudentState.students).subscribe((x) => {
       this.dataSource = new MatTableDataSource<StudentModel>(x);
     });
   }
 
   private addSubscription(): Subscription {
-    return this.actions.pipe(ofActionCompleted(null)).subscribe(() => {
+    return this.actions.pipe(ofActionCompleted(AddStudent)).subscribe(() => {
       this.loadData();
     });
   }
 
   private updateSubscription(): Subscription {
-    return this.actions.pipe(ofActionCompleted(null)).subscribe(() => {
+    return this.actions.pipe(ofActionCompleted(UpdateStudent)).subscribe(() => {
       this.loadData();
     });
   }
 
   private loadData(): void {
     const formValue = this.filterForm.value;
-    this.store.dispatch(new LoadStudents(new StudentFilterModel(formValue)))
+    this.store.dispatch(new LoadStudents(new StudentFilterModel(formValue)));
   }
 }
-

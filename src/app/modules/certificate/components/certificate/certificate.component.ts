@@ -36,6 +36,7 @@ export class CertificateComponent implements OnInit {
         } else {
             this.store.dispatch(new AddCertificate(model));
         }
+        this.dialogRef.close();
     }
 
     onCancel(): void {

@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ObserverComponent } from '../../../../+shared/components/observer/observer.component';
 import { Actions, Store, ofActionCompleted } from '@ngxs/store';
-import { FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { RewardModel } from '../../../../+shared/models/reward.model';
 import { RewardState } from '../../../../+shared/state/reward-state/reward.state';
 import { RewardFilterModel } from '../../../../+shared/models/reward-filter.model';
 import {
   AddReward,
+  DeleteReward,
   LoadRewards,
   UpdateReward,
 } from '../../../../+shared/state/reward-state/reward-state.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { RewardComponent } from '../reward/reward.component';
+import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-rewards-list',
@@ -26,8 +28,8 @@ export class RewardsListComponent extends ObserverComponent implements OnInit {
 
   filterForm: FormGroup = new FormGroup({
     description: new FormControl<string>(''),
-    minSum: new FormControl<number>(null),
-    maxSum: new FormControl<number>(null),
+    minSum: new FormControl<number>(null, Validators.min(0)),
+    maxSum: new FormControl<number>(null, Validators.min(0)),
   });
 
   constructor(
@@ -68,6 +70,16 @@ export class RewardsListComponent extends ObserverComponent implements OnInit {
         const filterModel = new RewardFilterModel(formData);
         this.store.dispatch(new LoadRewards(filterModel));
       });
+  }
+
+  onDelete(reward: RewardModel): void {
+    this.dialog
+      .open(ConfirmationDialogComponent, {
+        data: `Вы уверены, что хотите удалить ${reward.description}?`,
+      })
+      .afterClosed()
+      .pipe(filter((x) => !!x))
+      .subscribe(() => this.store.dispatch(new DeleteReward(reward.id)));
   }
 
   private filterChangesSubscription(): Subscription {

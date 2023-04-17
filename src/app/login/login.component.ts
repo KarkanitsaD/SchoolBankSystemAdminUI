@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Store} from "@ngxs/store";
-import {FormGroup, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {FormGroup, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {LoginModel} from "../+shared/models/login.model";
 import {Login} from "../+shared/state/auth-state/auth-state.actions";
 
@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      phone: new UntypedFormControl(''),
-      password: new UntypedFormControl('')
+      phone: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required)
     });
   }
 

@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { StudentStateModel } from './student-state.model';
 import { StudentApiService } from '../../services/student-api.service';
-import { DeleteStudent, LoadStudents, UpdateStudent } from './student-state.actions';
+import { AddStudent, DeleteStudent, LoadStudents, UpdateStudent } from './student-state.actions';
 import { Observable, tap } from 'rxjs';
 import { StudentModel } from '../../models/student.model';
 import { inject } from '@angular/core';
@@ -58,5 +58,13 @@ export class StudentState {
     action: UpdateStudent
   ): Observable<any> {
     return this.apiService.updateStudent(action.student);
+  }
+
+  @Action(AddStudent)
+  addTeacher(
+    _: StateContext<StudentStateModel>,
+    action: AddStudent
+  ): Observable<any> {
+    return this.apiService.addTeacher(action.student);
   }
 }

@@ -8,6 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ]
 })
 export class StudentModule {

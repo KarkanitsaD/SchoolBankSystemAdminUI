@@ -1,1 +1,38 @@
-<p>student works!</p>
+<mat-card>
+    <mat-card-header>
+        {{data ? 'Изменить' : 'Добавить'}} ученика
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input matInput placeholder="Введите имя" [formControl]="studentForm.controls['name']">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Фамилия</mat-label>
+            <input matInput placeholder="Введите фамилию" [formControl]="studentForm.controls['surname']">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Телефон</mat-label>
+            <input matInput placeholder="Введите телефон" [formControl]="studentForm.controls['phone']">
+        </mat-form-field>
+
+        <ng-container *ngIf="!data">
+            <mat-form-field appearance="outline">
+                <mat-label>Пароль</mat-label>
+                <input matInput type="password" placeholder="Введите пароль"
+                    [formControl]="studentForm.controls['password']">
+            </mat-form-field>
+        </ng-container>
+        
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="onCancel()">
+            Отменить
+        </button>
+        <button mat-flat-button color="primary" [disabled]="studentForm.invalid" (click)="onApply()">
+            {{ data ? 'Изменить' : 'Добавить' }}
+        </button>
+    </mat-card-actions>
+</mat-card>

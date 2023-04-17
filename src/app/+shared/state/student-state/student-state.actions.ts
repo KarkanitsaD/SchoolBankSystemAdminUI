@@ -1,3 +1,4 @@
+import { RegisterModel } from "../../models/register.model";
 import {StudentFilterModel} from "../../models/student-filter.model";
 import { StudentModel } from "../../models/student.model";
 
@@ -22,5 +23,5 @@ export class DeleteStudent {
 export class AddStudent {
   static readonly type = '[Student] Add';
 
-  constructor(public student: StudentModel) {}
+  constructor(public student: RegisterModel) {}
 }

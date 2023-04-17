@@ -4,12 +4,14 @@ import { inject } from '@angular/core';
 import { TeacherApiService } from '../../services/teacher-api.service';
 import { TeacherModel } from '../../models/teacher.model';
 import {
+  AddTeacher,
   DeleteTeacher,
   LoadTeachers,
   UpdateTeacher,
 } from './teacher-state.actions';
 import { Observable, tap } from 'rxjs';
 import { patch, removeItem } from '@ngxs/store/operators';
+import { RegisterModel } from '../../models/register.model';
 
 @State<TeacherStateModel>({
   name: 'teacher',
@@ -62,5 +64,13 @@ export class TeacherState {
     action: UpdateTeacher
   ): Observable<any> {
     return this.apiService.updateTeacher(action.teacher);
+  }
+
+  @Action(AddTeacher)
+  addTeacher(
+    _: StateContext<TeacherStateModel>,
+    action: AddTeacher
+  ): Observable<any> {
+    return this.apiService.addTeacher(action.teacher);
   }
 }
