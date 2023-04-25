@@ -24,7 +24,6 @@ import {MatTableModule} from "@angular/material/table";
 import {StudentModule} from "./modules/student/student.module";
 import {CertificateModule} from "./modules/certificate/certificate.module";
 import {StudentApiService} from "./+shared/services/student-api.service";
-import {StudentState} from "./+shared/state/student-state/student.state";
 import {AuthGuard} from "./+shared/guards/auth.guard";
 import {AuthInterceptor} from "./+shared/interceptors/auth.interceptor";
 import {TeacherApiService} from "./+shared/services/teacher-api.service";
@@ -47,7 +46,6 @@ import { ConfirmationDialogComponent } from './+shared/components/confirmation-d
     HttpClientModule,
     NgxsModule.forRoot([
       AuthState,
-      StudentState,
       RewardState,
       CertificateState,
     ]),

@@ -1,11 +1,11 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { StudentStateModel } from './student-state.model';
-import { StudentApiService } from '../../services/student-api.service';
 import { AddStudent, DeleteStudent, LoadStudents, UpdateStudent } from './student-state.actions';
 import { Observable, tap } from 'rxjs';
-import { StudentModel } from '../../models/student.model';
 import { inject } from '@angular/core';
 import { patch, removeItem } from '@ngxs/store/operators';
+import { StudentModel } from "../../../+shared/models/student.model";
+import { StudentApiService } from "../../../+shared/services/student-api.service";
 
 @State<StudentStateModel>({
   name: 'student',

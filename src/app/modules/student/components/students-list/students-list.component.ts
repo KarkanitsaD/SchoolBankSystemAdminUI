@@ -6,16 +6,11 @@ import { ObserverComponent } from '../../../../+shared/components/observer/obser
 import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { Actions, Store, ofActionCompleted } from '@ngxs/store';
 import { StudentFilterModel } from '../../../../+shared/models/student-filter.model';
-import {
-  AddStudent,
-  DeleteStudent,
-  LoadStudents,
-  UpdateStudent,
-} from '../../../../+shared/state/student-state/student-state.actions';
-import { StudentState } from '../../../../+shared/state/student-state/student.state';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import { StudentComponent } from '../student/student.component';
+import { AddStudent, DeleteStudent, LoadStudents, UpdateStudent } from "../../state/student-state.actions";
+import { StudentState } from "../../state/student.state";
 
 @Component({
   selector: 'app-students-list',

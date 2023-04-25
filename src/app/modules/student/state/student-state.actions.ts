@@ -1,6 +1,6 @@
-import { RegisterModel } from "../../models/register.model";
-import {StudentFilterModel} from "../../models/student-filter.model";
-import { StudentModel } from "../../models/student.model";
+import { StudentFilterModel } from "../../../+shared/models/student-filter.model";
+import { StudentModel } from "../../../+shared/models/student.model";
+import { RegisterModel } from "../../../+shared/models/register.model";
 
 export class LoadStudents {
   static readonly type = '[Student] Search';

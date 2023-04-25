@@ -4,8 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { RegisterModel } from 'src/app/+shared/models/register.model';
 import { StudentModel } from 'src/app/+shared/models/student.model';
-import { AddStudent, UpdateStudent } from 'src/app/+shared/state/student-state/student-state.actions';
 import { TeacherComponent } from 'src/app/modules/teacher/components/teacher/teacher.component';
+import { AddStudent, UpdateStudent } from "../../state/student-state.actions";
 
 @Component({
   selector: 'app-student',

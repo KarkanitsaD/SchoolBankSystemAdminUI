@@ -1,4 +1,4 @@
-import {StudentModel} from "../../models/student.model";
+import { StudentModel } from "../../../+shared/models/student.model";
 
 export interface StudentStateModel {
   students: StudentModel[],

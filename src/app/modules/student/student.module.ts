@@ -9,6 +9,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { NgxsModule } from "@ngxs/store";
+import { StudentState } from "./state/student.state";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    NgxsModule.forFeature([StudentState])
   ]
 })
 export class StudentModule {
