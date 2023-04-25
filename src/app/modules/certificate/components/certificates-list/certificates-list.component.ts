@@ -10,7 +10,7 @@ import { CertificateModel } from 'src/app/+shared/models/certificate.model';
 import { CertificateComponent } from '../certificate/certificate.component';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import {
-  AddCertificate,
+  AddCertificate, ClearCertificates,
   DeleteCertificate,
   LoadCertificates,
   UpdateCertificate
@@ -52,6 +52,11 @@ export class CertificatesListComponent
       this.addSubscription()
     );
     this.store.dispatch(new LoadCertificates(this.filterForm.value));
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(new ClearCertificates());
   }
 
   onEdit(model: CertificateModel): void {

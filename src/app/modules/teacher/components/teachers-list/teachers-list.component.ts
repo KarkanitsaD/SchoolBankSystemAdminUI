@@ -9,7 +9,13 @@ import { TeacherFilterModel } from '../../../../+shared/models/teacher-filter.mo
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import { TeacherComponent } from '../teacher/teacher.component';
-import { AddTeacher, DeleteTeacher, LoadTeachers, UpdateTeacher } from "../../state/teacher-state.actions";
+import {
+  AddTeacher,
+  ClearTeachers,
+  DeleteTeacher,
+  LoadTeachers,
+  UpdateTeacher
+} from "../../state/teacher-state.actions";
 import { TeacherState } from "../../state/teacher.state";
 
 @Component({
@@ -39,6 +45,11 @@ export class TeachersListComponent extends ObserverComponent implements OnInit {
       this.updateSubscription()
     );
     this.loadData();
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(new ClearTeachers());
   }
 
   onAdd(): void {

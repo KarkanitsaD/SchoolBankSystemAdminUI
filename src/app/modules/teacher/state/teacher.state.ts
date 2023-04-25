@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { TeacherStateModel } from './teacher-state.model';
 import { inject } from '@angular/core';
 import {
-  AddTeacher,
+  AddTeacher, ClearTeachers,
   DeleteTeacher,
   LoadTeachers,
   UpdateTeacher,
@@ -39,6 +39,13 @@ export class TeacherState {
         });
       })
     );
+  }
+
+  @Action(ClearTeachers)
+  clearTeachers(ctx: StateContext<TeacherStateModel>): void {
+    ctx.patchState({
+      teachers: []
+    });
   }
 
   @Action(DeleteTeacher)

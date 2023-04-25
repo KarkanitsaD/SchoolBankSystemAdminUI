@@ -1,6 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { StudentStateModel } from './student-state.model';
-import { AddStudent, DeleteStudent, LoadStudents, UpdateStudent } from './student-state.actions';
+import { AddStudent, ClearStudents, DeleteStudent, LoadStudents, UpdateStudent } from './student-state.actions';
 import { Observable, tap } from 'rxjs';
 import { inject } from '@angular/core';
 import { patch, removeItem } from '@ngxs/store/operators';
@@ -34,6 +34,13 @@ export class StudentState {
         });
       })
     );
+  }
+
+  @Action(ClearStudents)
+  clearStudents(ctx: StateContext<StudentStateModel>): void {
+    ctx.patchState({
+      students: []
+    });
   }
 
   @Action(DeleteStudent)

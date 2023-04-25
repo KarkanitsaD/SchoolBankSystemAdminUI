@@ -9,7 +9,7 @@ import { RewardFilterModel } from '../../../../+shared/models/reward-filter.mode
 import { MatDialog } from '@angular/material/dialog';
 import { RewardComponent } from '../reward/reward.component';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
-import { AddReward, DeleteReward, LoadRewards, UpdateReward } from "../../state/reward-state.actions";
+import { AddReward, ClearRewards, DeleteReward, LoadRewards, UpdateReward } from "../../state/reward-state.actions";
 import { RewardState } from "../../state/reward.state";
 
 @Component({
@@ -43,6 +43,11 @@ export class RewardsListComponent extends ObserverComponent implements OnInit {
       this.updateSubscription()
     );
     this.store.dispatch(new LoadRewards(this.filterForm.value));
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(new ClearRewards());
   }
 
   onUpdate(reward: RewardModel): void {

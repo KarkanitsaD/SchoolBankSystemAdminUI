@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { CertificateStateModel } from './certificate-state.model';
 import { inject } from '@angular/core';
 import {
-  AddCertificate,
+  AddCertificate, ClearCertificates,
   DeleteCertificate,
   LoadCertificates,
   UpdateCertificate,
@@ -39,6 +39,13 @@ export class CertificateState {
         });
       })
     );
+  }
+
+  @Action(ClearCertificates)
+  clearCertificates(ctx: StateContext<CertificateStateModel>): void {
+    ctx.patchState({
+      certificates: []
+    });
   }
 
   @Action(AddCertificate)

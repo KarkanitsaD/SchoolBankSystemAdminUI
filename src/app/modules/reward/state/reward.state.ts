@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { RewardStateModel } from './reward-state.model';
 import { inject } from '@angular/core';
 import {
-  AddReward,
+  AddReward, ClearRewards,
   DeleteReward,
   LoadRewards,
   UpdateReward,
@@ -39,6 +39,13 @@ export class RewardState {
         });
       })
     );
+  }
+
+  @Action(ClearRewards)
+  clearRewards(ctx: StateContext<RewardStateModel>): void {
+    ctx.patchState({
+      rewards: []
+    });
   }
 
   @Action(AddReward)

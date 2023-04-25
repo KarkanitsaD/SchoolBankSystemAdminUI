@@ -9,7 +9,13 @@ import { StudentFilterModel } from '../../../../+shared/models/student-filter.mo
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import { StudentComponent } from '../student/student.component';
-import { AddStudent, DeleteStudent, LoadStudents, UpdateStudent } from "../../state/student-state.actions";
+import {
+  AddStudent,
+  ClearStudents,
+  DeleteStudent,
+  LoadStudents,
+  UpdateStudent
+} from "../../state/student-state.actions";
 import { StudentState } from "../../state/student.state";
 
 @Component({
@@ -45,6 +51,11 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
       this.updateSubscription()
     );
     this.store.dispatch(new LoadStudents(this.filterForm.value));
+  }
+
+  override ngOnDestroy() {
+    super.ngOnDestroy();
+    this.store.dispatch(new ClearStudents());
   }
 
   onAdd(): void {
