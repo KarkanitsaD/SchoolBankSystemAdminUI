@@ -1,5 +1,5 @@
-import {RewardFilterModel} from "../../models/reward-filter.model";
-import { RewardModel } from "../../models/reward.model";
+import { RewardModel } from "../../../+shared/models/reward.model";
+import { RewardFilterModel } from "../../../+shared/models/reward-filter.model";
 
 export class LoadRewards {
   static readonly type = '[Reward] Search';

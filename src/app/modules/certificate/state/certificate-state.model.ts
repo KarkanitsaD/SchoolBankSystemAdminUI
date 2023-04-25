@@ -1,4 +1,4 @@
-import { CertificateModel } from "../../models/certificate.model";
+import { CertificateModel } from "../../../+shared/models/certificate.model";
 
 export interface CertificateStateModel {
     certificates: CertificateModel[];

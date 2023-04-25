@@ -1,8 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { RewardStateModel } from './reward-state.model';
 import { inject } from '@angular/core';
-import { RewardApiService } from '../../services/reward-api.service';
-import { RewardModel } from '../../models/reward.model';
 import {
   AddReward,
   DeleteReward,
@@ -11,6 +9,8 @@ import {
 } from './reward-state.actions';
 import { Observable, tap } from 'rxjs';
 import { patch, removeItem } from '@ngxs/store/operators';
+import { RewardModel } from "../../../+shared/models/reward.model";
+import { RewardApiService } from "../../../+shared/services/reward-api.service";
 
 @State<RewardStateModel>({
   name: 'reward',

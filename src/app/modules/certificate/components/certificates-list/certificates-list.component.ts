@@ -7,15 +7,15 @@ import { Subscription, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { ObserverComponent } from 'src/app/+shared/components/observer/observer.component';
 import { CertificateFilterModel } from 'src/app/+shared/models/certificate-filter.model';
 import { CertificateModel } from 'src/app/+shared/models/certificate.model';
+import { CertificateComponent } from '../certificate/certificate.component';
+import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import {
   AddCertificate,
   DeleteCertificate,
   LoadCertificates,
-  UpdateCertificate,
-} from 'src/app/+shared/state/certificate-state/certificate-state.actions';
-import { CertificateState } from 'src/app/+shared/state/certificate-state/certificate.state';
-import { CertificateComponent } from '../certificate/certificate.component';
-import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
+  UpdateCertificate
+} from "../../state/certificate-state.actions";
+import { CertificateState } from "../../state/certificate.state";
 
 @Component({
   selector: 'app-certificates-list',

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Store } from "@ngxs/store";
 import { CertificateModel } from "src/app/+shared/models/certificate.model";
-import { AddCertificate, UpdateCertificate } from "src/app/+shared/state/certificate-state/certificate-state.actions";
+import { AddCertificate, UpdateCertificate } from "../../state/certificate-state.actions";
 
 @Component({
     selector: 'app-certificate',

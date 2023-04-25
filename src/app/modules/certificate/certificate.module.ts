@@ -10,6 +10,8 @@ import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialogModule } from "@angular/material/dialog";
+import { NgxsModule } from "@ngxs/store";
+import { CertificateState } from "./state/certificate.state";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import { MatDialogModule } from "@angular/material/dialog";
         MatTableModule,
         MatIconModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        NgxsModule.forFeature([CertificateState])
     ]
 })
 export class CertificateModule {

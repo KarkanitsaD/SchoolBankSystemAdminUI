@@ -1,4 +1,4 @@
-import {RewardModel} from "../../models/reward.model";
+import { RewardModel } from "../../../+shared/models/reward.model";
 
 export class RewardStateModel {
   rewards: RewardModel[];

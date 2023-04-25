@@ -29,9 +29,8 @@ import {AuthInterceptor} from "./+shared/interceptors/auth.interceptor";
 import {TeacherApiService} from "./+shared/services/teacher-api.service";
 import {RewardApiService} from "./+shared/services/reward-api.service";
 import {CertificateApiService} from "./+shared/services/certificate-api.service";
-import {RewardState} from "./+shared/state/reward-state/reward.state";
-import { CertificateState } from './+shared/state/certificate-state/certificate.state';
 import { ConfirmationDialogComponent } from './+shared/components/confirmation-dialog/confirmation-dialog.component';
+import { RewardState } from "./modules/reward/state/reward.state";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ConfirmationDialogComponent],
@@ -46,8 +45,7 @@ import { ConfirmationDialogComponent } from './+shared/components/confirmation-d
     HttpClientModule,
     NgxsModule.forRoot([
       AuthState,
-      RewardState,
-      CertificateState,
+      RewardState
     ]),
     NgxsRouterPluginModule.forRoot(),
     ReactiveFormsModule,

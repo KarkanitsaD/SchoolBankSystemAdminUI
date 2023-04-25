@@ -1,5 +1,5 @@
-import { CertificateFilterModel } from "../../models/certificate-filter.model";
-import { CertificateModel } from "../../models/certificate.model";
+import { CertificateModel } from "../../../+shared/models/certificate.model";
+import { CertificateFilterModel } from "../../../+shared/models/certificate-filter.model";
 
 export class LoadCertificates {
     static readonly type = '[Certificate] Search';

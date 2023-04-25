@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { RewardModel } from 'src/app/+shared/models/reward.model';
-import { AddReward, UpdateReward } from 'src/app/+shared/state/reward-state/reward-state.actions';
+import { AddReward, UpdateReward } from "../../state/reward-state.actions";
 
 @Component({
   selector: 'app-reward',

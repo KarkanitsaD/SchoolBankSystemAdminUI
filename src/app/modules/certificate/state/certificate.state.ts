@@ -1,8 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { CertificateStateModel } from './certificate-state.model';
 import { inject } from '@angular/core';
-import { CertificateApiService } from '../../services/certificate-api.service';
-import { CertificateModel } from '../../models/certificate.model';
 import {
   AddCertificate,
   DeleteCertificate,
@@ -11,6 +9,8 @@ import {
 } from './certificate-state.actions';
 import { Observable, tap } from 'rxjs';
 import { patch, removeItem } from '@ngxs/store/operators';
+import { CertificateModel } from "../../../+shared/models/certificate.model";
+import { CertificateApiService } from "../../../+shared/services/certificate-api.service";
 
 @State<CertificateStateModel>({
   name: 'certificate',

@@ -5,17 +5,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { RewardModel } from '../../../../+shared/models/reward.model';
-import { RewardState } from '../../../../+shared/state/reward-state/reward.state';
 import { RewardFilterModel } from '../../../../+shared/models/reward-filter.model';
-import {
-  AddReward,
-  DeleteReward,
-  LoadRewards,
-  UpdateReward,
-} from '../../../../+shared/state/reward-state/reward-state.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { RewardComponent } from '../reward/reward.component';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
+import { AddReward, DeleteReward, LoadRewards, UpdateReward } from "../../state/reward-state.actions";
+import { RewardState } from "../../state/reward.state";
 
 @Component({
   selector: 'app-rewards-list',
