@@ -1,17 +1,24 @@
-<div class="login-card">
-  <mat-form-field>
-    <mat-label>
-      Номер телефона
-    </mat-label>
-    <input matInput placeholder="Номер телефона" [formControl]="loginForm.controls['phone']">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>
-      Пароль
-    </mat-label>
-    <input matInput placeholder="Пароль" type="password" [formControl]="loginForm.controls['password']">
-  </mat-form-field>
-  <button mat-flat-button class="login-btn" color="primary" [disabled]="loginForm.invalid" (click)="onLogin()">
-    Войти в систему
-  </button>
+<div class="main-block">
+  <div class="info-block">
+    <h1>
+      Система поощерения студентов "Лицей №1 города Гродно"
+    </h1>
+  </div>
+  <div class="login-block">
+    <mat-form-field>
+      <mat-label>
+        Номер телефона
+      </mat-label>
+      <input matInput placeholder="Номер телефона" [formControl]="loginForm.controls['phone']">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        Пароль
+      </mat-label>
+      <input matInput placeholder="Пароль" type="password" [formControl]="loginForm.controls['password']">
+    </mat-form-field>
+    <button mat-flat-button class="login-btn" color="primary" [disabled]="loginForm.invalid" (click)="onLogin()">
+      Войти в систему
+    </button>
+  </div>
 </div>
