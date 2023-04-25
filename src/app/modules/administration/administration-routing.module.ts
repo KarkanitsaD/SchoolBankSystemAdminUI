@@ -29,6 +29,7 @@ const routes: Routes = [
             (m) => m.CertificateModule
           ),
       },
+      { path: '**', redirectTo: 'students' }
     ],
   },
 ];

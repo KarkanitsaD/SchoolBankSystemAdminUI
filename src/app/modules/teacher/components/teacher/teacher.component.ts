@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { RegisterModel } from 'src/app/+shared/models/register.model';
 import { TeacherModel } from 'src/app/+shared/models/teacher.model';
-import { AddTeacher, UpdateTeacher } from 'src/app/+shared/state/teacher-state/teacher-state.actions';
+import { AddTeacher, UpdateTeacher } from "../../state/teacher-state.actions";
 
 @Component({
   selector: 'app-teacher',

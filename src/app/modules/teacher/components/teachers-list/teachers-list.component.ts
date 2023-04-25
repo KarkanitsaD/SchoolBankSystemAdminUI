@@ -5,12 +5,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Actions, Store, ofActionCompleted } from '@ngxs/store';
 import { ObserverComponent } from '../../../../+shared/components/observer/observer.component';
 import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
-import { AddTeacher, DeleteTeacher, LoadTeachers, UpdateTeacher } from '../../../../+shared/state/teacher-state/teacher-state.actions';
-import { TeacherState } from '../../../../+shared/state/teacher-state/teacher.state';
 import { TeacherFilterModel } from '../../../../+shared/models/teacher-filter.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
 import { TeacherComponent } from '../teacher/teacher.component';
+import { AddTeacher, DeleteTeacher, LoadTeachers, UpdateTeacher } from "../../state/teacher-state.actions";
+import { TeacherState } from "../../state/teacher.state";
 
 @Component({
   selector: 'app-teachers-list',

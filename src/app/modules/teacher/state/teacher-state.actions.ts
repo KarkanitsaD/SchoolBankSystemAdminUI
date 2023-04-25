@@ -1,6 +1,6 @@
-import { RegisterModel } from '../../models/register.model';
-import { TeacherFilterModel } from '../../models/teacher-filter.model';
-import { TeacherModel } from '../../models/teacher.model';
+import { TeacherFilterModel } from "../../../+shared/models/teacher-filter.model";
+import { TeacherModel } from "../../../+shared/models/teacher.model";
+import { RegisterModel } from "../../../+shared/models/register.model";
 
 export class LoadTeachers {
   static readonly type = '[Teacher] Search';

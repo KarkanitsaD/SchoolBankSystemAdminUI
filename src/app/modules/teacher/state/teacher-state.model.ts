@@ -1,4 +1,4 @@
-import {TeacherModel} from "../../models/teacher.model";
+import { TeacherModel } from "../../../+shared/models/teacher.model";
 
 export interface TeacherStateModel {
   teachers: TeacherModel[];

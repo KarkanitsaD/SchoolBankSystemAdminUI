@@ -1,8 +1,6 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { TeacherStateModel } from './teacher-state.model';
 import { inject } from '@angular/core';
-import { TeacherApiService } from '../../services/teacher-api.service';
-import { TeacherModel } from '../../models/teacher.model';
 import {
   AddTeacher,
   DeleteTeacher,
@@ -11,7 +9,8 @@ import {
 } from './teacher-state.actions';
 import { Observable, tap } from 'rxjs';
 import { patch, removeItem } from '@ngxs/store/operators';
-import { RegisterModel } from '../../models/register.model';
+import { TeacherApiService } from "../../../+shared/services/teacher-api.service";
+import { TeacherModel } from "../../../+shared/models/teacher.model";
 
 @State<TeacherStateModel>({
   name: 'teacher',

@@ -36,7 +36,7 @@ export class AppComponent extends ObserverComponent implements OnInit {
 
   private loginSubscription(): Subscription {
     return this.actions$.pipe(ofActionSuccessful(Login)).subscribe(() => {
-      this.store.dispatch(new Navigate(['students']));
+      this.store.dispatch(new Navigate(['administration']));
     });
   }
 

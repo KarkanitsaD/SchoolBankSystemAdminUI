@@ -27,7 +27,6 @@ import {StudentApiService} from "./+shared/services/student-api.service";
 import {StudentState} from "./+shared/state/student-state/student.state";
 import {AuthGuard} from "./+shared/guards/auth.guard";
 import {AuthInterceptor} from "./+shared/interceptors/auth.interceptor";
-import {TeacherState} from "./+shared/state/teacher-state/teacher.state";
 import {TeacherApiService} from "./+shared/services/teacher-api.service";
 import {RewardApiService} from "./+shared/services/reward-api.service";
 import {CertificateApiService} from "./+shared/services/certificate-api.service";
@@ -49,7 +48,6 @@ import { ConfirmationDialogComponent } from './+shared/components/confirmation-d
     NgxsModule.forRoot([
       AuthState,
       StudentState,
-      TeacherState,
       RewardState,
       CertificateState,
     ]),

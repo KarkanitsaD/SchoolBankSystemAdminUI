@@ -10,6 +10,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { NgxsModule } from "@ngxs/store";
+import { TeacherState } from "./state/teacher.state";
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     MatIconModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    NgxsModule.forFeature([TeacherState])
   ]
 })
 export class TeacherModule {
