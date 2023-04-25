@@ -2,6 +2,7 @@
   <span>
     Портал администратора
   </span>
+  <div class="splitter"></div>
   <button *ngIf="isAuthorized$ | async" mat-icon-button (click)="onLogout()">
     <mat-icon>logout</mat-icon>
   </button>

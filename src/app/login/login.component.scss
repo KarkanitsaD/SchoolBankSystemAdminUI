@@ -32,6 +32,13 @@
   justify-content: center;
   align-items: center;
 
+  mat-icon {
+    font-size: 120px;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+  }
+
   button,
   mat-form-field {
     width: 100%;
