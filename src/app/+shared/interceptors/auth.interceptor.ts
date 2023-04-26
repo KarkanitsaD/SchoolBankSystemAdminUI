@@ -1,8 +1,8 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {catchError, EMPTY, Observable} from "rxjs";
+import { catchError, EMPTY, Observable, of } from "rxjs";
 import {Store} from "@ngxs/store";
-import {Logout} from "../state/auth-state/auth-state.actions";
+import { LoginFailed, Logout } from "../state/auth-state/auth-state.actions";
 import {LocalStorageService} from "../services/local-storage.service";
 
 @Injectable()
@@ -21,10 +21,10 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err.status === 401) {
-      return this.store.dispatch(new Logout());
+    if (err.status === 403) {
+      return this.store.dispatch([new Logout(), new LoginFailed()]);
     }
 
-    return EMPTY;
+    return of(err);
   }
 }

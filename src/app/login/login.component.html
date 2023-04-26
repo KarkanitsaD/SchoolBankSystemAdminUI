@@ -12,12 +12,13 @@
       </mat-label>
       <input matInput placeholder="Номер телефона" [formControl]="loginForm.controls['phone']">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="password">
       <mat-label>
         Пароль
       </mat-label>
       <input matInput placeholder="Пароль" type="password" [formControl]="loginForm.controls['password']">
     </mat-form-field>
+    <mat-error *ngIf="loginForm.hasError('loginFailed')" class="error">Неверный номер телефона либо пароль</mat-error>
     <button mat-flat-button class="login-btn" color="primary" [disabled]="loginForm.invalid" (click)="onLogin()">
       Войти в систему
     </button>
