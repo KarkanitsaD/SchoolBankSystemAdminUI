@@ -17,6 +17,7 @@ import {
   UpdateStudent
 } from "../../state/student-state.actions";
 import { StudentState } from "../../state/student.state";
+import { StudentInfoComponent } from "../student-info/student-info.component";
 
 @Component({
   selector: 'app-students-list',
@@ -60,6 +61,10 @@ export class StudentsListComponent extends ObserverComponent implements OnInit {
 
   onAdd(): void {
     this.dialog.open(StudentComponent);
+  }
+
+  onInfo(student: StudentModel): void {
+    this.dialog.open(StudentInfoComponent, { data: student.id });
   }
 
   onEdit(student: StudentModel): void {

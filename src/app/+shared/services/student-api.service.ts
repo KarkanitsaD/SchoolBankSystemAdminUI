@@ -25,7 +25,11 @@ export class StudentApiService {
     return this.apiService.delete<any>(`${this.baseUrl}/${id}`);
   }
 
-  addTeacher(registerModel: RegisterModel): Observable<any> {
+  addStudent(registerModel: RegisterModel): Observable<any> {
     return this.apiService.post<any>(`${environment.api_url}/auth/register/student`, registerModel);
+  }
+
+  getStudent(id: string): Observable<StudentModel> {
+    return this.apiService.get<StudentModel>(`${environment.api_url}/student/${id}`);
   }
 }

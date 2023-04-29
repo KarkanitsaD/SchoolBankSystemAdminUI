@@ -11,11 +11,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from "@ngxs/store";
 import { StudentState } from "./state/student.state";
+import { StudentInfoComponent } from "./components/student-info/student-info.component";
 
 @NgModule({
   declarations: [
     StudentsListComponent,
-    StudentComponent
+    StudentComponent,
+    StudentInfoComponent
   ],
   exports: [
     StudentsListComponent

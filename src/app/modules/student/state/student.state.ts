@@ -72,6 +72,6 @@ export class StudentState {
     _: StateContext<StudentStateModel>,
     action: AddStudent
   ): Observable<any> {
-    return this.apiService.addTeacher(action.student);
+    return this.apiService.addStudent(action.student);
   }
 }
