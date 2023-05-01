@@ -12,6 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from "@ngxs/store";
 import { StudentState } from "./state/student.state";
 import { StudentInfoComponent } from "./components/student-info/student-info.component";
+import { MatLegacyTabsModule } from "@angular/material/legacy-tabs";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -22,17 +24,19 @@ import { StudentInfoComponent } from "./components/student-info/student-info.com
   exports: [
     StudentsListComponent
   ],
-  imports: [
-    CommonModule,
-    StudentRoutingModule,
-    MatTableModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatCardModule,
-    NgxsModule.forFeature([StudentState])
-  ]
+    imports: [
+        CommonModule,
+        StudentRoutingModule,
+        MatTableModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatCardModule,
+        NgxsModule.forFeature([StudentState]),
+        MatLegacyTabsModule,
+        MatProgressSpinnerModule
+    ]
 })
 export class StudentModule {
 }

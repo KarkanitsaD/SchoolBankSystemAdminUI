@@ -25,4 +25,8 @@ export class StudentInfoComponent implements OnInit {
             this.loading = false;
         });
     }
+
+    onClose(): void {
+        this.dialogRef.close();
+    }
 }

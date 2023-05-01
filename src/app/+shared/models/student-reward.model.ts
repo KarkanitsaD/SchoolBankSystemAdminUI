@@ -8,6 +8,7 @@ export class StudentRewardModel {
     reward: RewardModel;
     student: StudentModel;
     teacher: TeacherModel;
+    time: number;
 
     constructor(init?: Partial<StudentRewardModel>) {
         if (init) {
