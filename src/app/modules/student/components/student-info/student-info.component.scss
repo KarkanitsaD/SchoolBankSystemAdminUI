@@ -1,101 +1,99 @@
-.data-block {
-    width: 500px;
-    height: 900px;
-    padding: 20px;
-
-    .loading {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    overflow: hidden;
-}
-
-.student-info {
-
-    display: flex;
-    flex-direction: column;
-}
-
-.main-info {
-    display: flex;
-    flex-direction: column;
-
-    .image {
-        border-radius: 2%;
-        width: 500px;
-        height: 500px;
-        object-fit: cover;
-        margin-bottom: 10px;
-    }
-
-    .phone {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-}
-
-.transactions {
-    display: flex;
-    justify-content: center;
-    height: 300px;
-}
-
-.transactions-block {
+:host {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    gap: 12px;
+    gap: 20px;
+}
 
-    .transaction {
-        border-radius: 2px;
-        padding: 4px;
-        background-color: white;
-        box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+.student {
+    display: flex;
+    gap: 20px;
 
-        &:hover {
-            box-shadow: 8px 8px 8px 2px rgba(34, 60, 80, 0.2);
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        padding: 30px 0;
+        gap: 15px;
+
+        .name {
+            font-size: 30px;
+            line-height: 30px;
         }
 
-        .icon {
-            height: 70px;
-            width: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .attributes {
+            font-size: 16px;
+        }
 
-            &.reward-icon {
-                background-color: green;
-            }
+        .phone {
+            font-size: 20px;
+            line-height: 20px;
+        }
+    }
+}
+
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 600px;
+    padding: 10px;
+    background-color: #fafafa;
+    overflow: auto;
+
+    .transaction {
+        display: flex;
+        gap: 10px;
+        background-color: white;
+        padding: 10px;
+        box-shadow: 4px 4px 4px 0 rgba(34, 60, 80, 0.2);
+
+        &:hover {
+            box-shadow: 4px 4px 20px 0 rgba(34, 60, 80, 0.2);
+        }
+
+        .icon-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            width: 60px;
 
             mat-icon {
+                color: white;
                 font-size: 40px;
                 width: 40px;
                 height: 40px;
+                cursor: pointer;
             }
         }
 
         &.reward {
-            display: flex;
-            gap: 10px;
+            .icon-block {
+                background-color: #84cb84;
+            }
+            
+            .time-money {
+                display: flex;
+                flex-direction: column;
 
-            .reward-info {
+                div {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
 
+                    p {
+                        margin: 0;
+                    }
+                }
             }
         }
     }
-}
-
-mat-icon {
-    color: #fff;
 }

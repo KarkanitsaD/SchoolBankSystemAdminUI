@@ -1,43 +1,27 @@
-<div class="data-block">
-    <div *ngIf="loading" class="loading">
-        <mat-spinner></mat-spinner>
+<ng-container *ngIf="student">
+    <div class="student">
+        <img src="assets/levi.jpg">
+        <div class="info">
+            <span class="name">Дима Карканица</span>
+            <span class="attributes">11 A класс | 300 бонусов</span>
+            <span class="phone">+375296701698</span>
+        </div>
     </div>
-    <div *ngIf="!loading" class="student-info">
-        <div class="main-info">
-            <img class="image" src="assets/levi.jpg">
-            <h1>{{ student.surname + ' ' + student.name }}, 11 "A" класс</h1>
-            <div class="phone">
-                <h2>Телефон: {{ student.phone }}</h2>
-                <h2>Сумма на счёте: {{ student.sum }}</h2>
+    <div class="transactions-list">
+        <div *ngFor="let reward of student.studentRewards" class="transaction reward">
+            <div class="icon-block">
+                <mat-icon matTooltip="{{reward.reward.description}}">stars</mat-icon>
+            </div>
+            <div class="time-money">
+                <div>
+                    <mat-icon>schedule</mat-icon>
+                    <p>{{ reward.time | date: 'hh:mm, dd/mm/yyyy' }}</p>
+                </div>
+                <div>
+                    <mat-icon>payments</mat-icon>
+                    <p>{{ reward.sum }}</p>
+                </div>
             </div>
         </div>
-        <div class="transactions">
-            <mat-tab-group>
-                <mat-tab label="Вознаграждения">
-                    <div class="transactions-block">
-                        <div *ngFor="let reward of student.studentRewards" class="transaction reward">
-                            <div class="icon reward-icon">
-                                <mat-icon>stars</mat-icon>
-                            </div>
-                            <div>
-                                <h3 style="margin: 0">{{ reward.reward.description }} (+{{ reward.sum }} баллов)</h3>
-                                <h4 style="margin: 0">Время транзакции: {{ reward.time | date: 'hh:mm, dd-mm-yyyy' }}</h4>
-                                <h5 style="margin: 0">Начислено: {{ reward.teacher.surname + ' ' + reward.teacher.name }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Сертификаты">
-                    <div class="transactions-block">
-
-                    </div>
-                </mat-tab>
-                <mat-tab label="Переводы">
-                    <div class="transactions-block">
-
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
     </div>
-</div>
+</ng-container>
