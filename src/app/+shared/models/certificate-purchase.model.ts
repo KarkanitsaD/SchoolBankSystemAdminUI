@@ -2,6 +2,7 @@ import { CertificateModel } from "./certificate.model";
 
 export class CertificatePurchaseModel {
     id: string;
+    time: number;
     activatedTime: number;
     price: number;
     studentId: string;

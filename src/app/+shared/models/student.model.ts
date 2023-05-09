@@ -11,6 +11,7 @@ export class StudentModel {
   certificatePurchases: CertificatePurchaseModel[];
   moneyTransfersFromStudent: MoneyTransferModel[];
   moneyTransfersToStudent: MoneyTransferModel[];
+  moneyTransfers: MoneyTransferModel[];
   studentRewards: StudentRewardModel[];
 
   public constructor(init?: Partial<StudentModel>) {

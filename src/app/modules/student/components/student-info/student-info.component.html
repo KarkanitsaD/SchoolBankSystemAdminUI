@@ -2,26 +2,103 @@
     <div class="student">
         <img src="assets/levi.jpg">
         <div class="info">
-            <span class="name">Дима Карканица</span>
-            <span class="attributes">11 A класс | 300 бонусов</span>
-            <span class="phone">+375296701698</span>
+            <span class="name">{{ student.name + ' ' + student.surname }}</span>
+            <span class="attributes">11 A класс | {{ student.sum }} бонусов</span>
+            <span class="phone">{{ student.phone }}</span>
         </div>
     </div>
+    <div class="transacrion-buttons">
+        <button mat-flat-button (click)="onListChange('rewards')">
+            Вознграждения
+        </button>
+        <button mat-flat-button (click)="onListChange('transfers')">
+            Переводы
+        </button>
+        <button mat-flat-button (click)="onListChange('certificates')">
+            Сертификаты
+        </button>
+    </div>
     <div class="transactions-list">
-        <div *ngFor="let reward of student.studentRewards" class="transaction reward">
-            <div class="icon-block">
-                <mat-icon matTooltip="{{reward.reward.description}}">stars</mat-icon>
-            </div>
-            <div class="time-money">
-                <div>
-                    <mat-icon>schedule</mat-icon>
-                    <p>{{ reward.time | date: 'hh:mm, dd/mm/yyyy' }}</p>
+        <ng-container *ngIf="displayList === 'rewards'">
+            <div *ngFor="let reward of student.studentRewards" class="transaction reward">
+                <div class="icon-block">
+                    <mat-icon matTooltip="{{reward.reward.description}}">stars</mat-icon>
                 </div>
-                <div>
-                    <mat-icon>payments</mat-icon>
-                    <p>{{ reward.sum }}</p>
+                <div class="time-money">
+                    <div>
+                        <mat-icon>schedule</mat-icon>
+                        <p>{{ reward.time | date: 'hh:mm, dd/mm/yyyy' }}</p>
+                    </div>
+                    <div>
+                        <mat-icon>payments</mat-icon>
+                        <p>{{ reward.sum }}</p>
+                    </div>
+                </div>
+                <div class="teacher-info">
+                    <div>
+                        <mat-icon>person_pin</mat-icon>
+                        <p>{{ reward.teacher.name + ' ' + reward.teacher.surname }}</p>
+                    </div>
+                    <div></div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="displayList === 'transfers'">
+            <div *ngFor="let transfer of student.moneyTransfers" class="transaction money-transfer">
+                <div class="icon-block" [ngClass]="{ 'loss-money': transfer.studentFromId === student.id }">
+                    <mat-icon>paid</mat-icon>
+                </div>
+                <div class="info-block">
+                    <div class="time-money">
+                        <div>
+                            <mat-icon>schedule</mat-icon>
+                            <p>{{ transfer.time | date: 'hh:mm, dd/MM/yyyy' }}</p>
+                        </div>
+                        <div>
+                            <mat-icon>payments</mat-icon>
+                            <p>{{ transfer.sum }}</p>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <p>
+                            {{ transfer.studentFromName + ' ' + transfer.studentFromSurname }}
+                        </p>
+                        <mat-icon>arrow_right_alt</mat-icon>
+                        <p>
+                            {{ transfer.studentToName + ' ' + transfer.studentToSurname }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="displayList === 'certificates'">
+            <div *ngFor="let certificate of student.certificatePurchases" class="transaction certificate">
+                <div class="icon-block" matTooltip="{{certificate.description}}">
+                    <mat-icon>redeem</mat-icon>
+                </div>
+                <div class="info-block">
+                    <div class="time-block">
+                        <div>
+                            <mat-icon>schedule</mat-icon>
+                            <p>{{ certificate.time | date: 'hh:mm, dd/MM/yyyy' }}</p>
+                        </div>
+                        <div *ngIf="!certificate.activatedTime">
+                            <mat-icon>toggle_off</mat-icon>
+                            <p>Не активирован</p>
+                        </div>
+                        <div *ngIf="certificate.activatedTime">
+                            <mat-icon color="prmary">toggle_on</mat-icon>
+                            <p>{{ certificate.activatedTime | date: 'hh:mm, dd/MM/yyyy' }}</p>
+                        </div>
+                    </div>
+                    <div class="price-block">
+                        <div>
+                            <mat-icon>payments</mat-icon>
+                            <p>{{ certificate.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </ng-container>

@@ -3,6 +3,12 @@
     flex-direction: column;
     padding: 10px;
     gap: 20px;
+    width: 520px;
+    height: 650px;
+}
+
+p {
+    margin: 0;
 }
 
 .student {
@@ -23,7 +29,7 @@
         gap: 15px;
 
         .name {
-            font-size: 30px;
+            font-size: 24px;
             line-height: 30px;
         }
 
@@ -42,7 +48,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 600px;
+    height: 400px;
     padding: 10px;
     background-color: #fafafa;
     overflow: auto;
@@ -50,6 +56,8 @@
     .transaction {
         display: flex;
         gap: 10px;
+        max-height: 80px;
+        width: 460px;
         background-color: white;
         padding: 10px;
         box-shadow: 4px 4px 4px 0 rgba(34, 60, 80, 0.2);
@@ -91,6 +99,89 @@
 
                     p {
                         margin: 0;
+                    }
+                }
+            }
+
+            .teacher-info {
+                display: flex;
+                flex-direction: column;
+
+                div {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        &.money-transfer {
+            .icon-block {
+                background-color: #bfcb84;
+
+                &.loss-money {
+                    background-color: #cb9584;
+                }
+            }
+
+            .info-block {
+                display: flex;
+                flex-direction: column;
+
+                .time-money {
+                    display: flex;
+                    gap: 10px;
+                    flex: 1;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+
+                .user-info {
+                    flex: 1;
+                    display: flex;
+                }
+            }
+        }
+
+        &.certificate {
+            .icon-block {
+                background-color: #84a4cb;
+            }
+
+            .info-block {
+                display: flex;
+                flex-direction: column;
+
+                .time-block {
+                    display: flex;
+                    flex: 1;
+                    gap: 10px;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+
+                .price-block {
+                    display: flex;
+                    flex: 1;
+                    gap: 10px;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
                     }
                 }
             }

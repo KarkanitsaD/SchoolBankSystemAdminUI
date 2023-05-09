@@ -13,6 +13,8 @@ export class StudentInfoComponent implements OnInit {
 
     student: StudentModel;
 
+    displayList = 'rewards';
+
     constructor(
         private dialogRef: MatDialogRef<StudentInfoComponent>,
         @Inject(MAT_DIALOG_DATA) public data: string,
@@ -28,5 +30,9 @@ export class StudentInfoComponent implements OnInit {
 
     onClose(): void {
         this.dialogRef.close();
+    }
+
+    onListChange(displayList: string): void {
+        this.displayList = displayList;
     }
 }
