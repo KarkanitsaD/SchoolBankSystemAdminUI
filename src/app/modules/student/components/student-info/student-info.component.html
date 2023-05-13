@@ -20,28 +20,33 @@
     </div>
     <div class="transactions-list">
         <ng-container *ngIf="displayList === 'rewards'">
-            <div *ngFor="let reward of student.studentRewards" class="transaction reward">
-                <div class="icon-block">
-                    <mat-icon matTooltip="{{reward.reward.description}}">stars</mat-icon>
-                </div>
-                <div class="time-money">
-                    <div>
-                        <mat-icon>schedule</mat-icon>
-                        <p>{{ reward.time | date: 'hh:mm, dd/mm/yyyy' }}</p>
+            <ng-container *ngIf="student.studentRewards.length">
+                <div *ngFor="let reward of student.studentRewards" class="transaction reward">
+                    <div class="icon-block">
+                        <mat-icon matTooltip="{{reward.reward.description}}">stars</mat-icon>
                     </div>
-                    <div>
-                        <mat-icon>payments</mat-icon>
-                        <p>{{ reward.sum }}</p>
+                    <div class="time-money">
+                        <div>
+                            <mat-icon>schedule</mat-icon>
+                            <p>{{ reward.time | date: 'hh:mm, dd/mm/yyyy' }}</p>
+                        </div>
+                        <div>
+                            <mat-icon>payments</mat-icon>
+                            <p>{{ reward.sum }}</p>
+                        </div>
+                    </div>
+                    <div class="teacher-info">
+                        <div>
+                            <mat-icon>person_pin</mat-icon>
+                            <p>{{ reward.teacher.name + ' ' + reward.teacher.surname }}</p>
+                        </div>
+                        <div></div>
                     </div>
                 </div>
-                <div class="teacher-info">
-                    <div>
-                        <mat-icon>person_pin</mat-icon>
-                        <p>{{ reward.teacher.name + ' ' + reward.teacher.surname }}</p>
-                    </div>
-                    <div></div>
-                </div>
-            </div>
+            </ng-container>
+            <ng-container *ngIf="!student.studentRewards.length">
+                <div class="no-transactions">Еще нет вознаграждений.</div>
+            </ng-container>
         </ng-container>
         <ng-container *ngIf="displayList === 'transfers'">
             <div *ngFor="let transfer of student.moneyTransfers" class="transaction money-transfer">
@@ -70,6 +75,9 @@
                     </div>
                 </div>
             </div>
+            <ng-container *ngIf="!student.moneyTransfers.length">
+                <div class="no-transactions">Еще нет переводов.</div>
+            </ng-container>
         </ng-container>
         <ng-container *ngIf="displayList === 'certificates'">
             <div *ngFor="let certificate of student.certificatePurchases" class="transaction certificate">
@@ -99,6 +107,9 @@
                     </div>
                 </div>
             </div>
+            <ng-container *ngIf="!student.certificatePurchases.length">
+                <div class="no-transactions">Еще нет сертификатов.</div>
+            </ng-container>
         </ng-container>
     </div>
 </ng-container>

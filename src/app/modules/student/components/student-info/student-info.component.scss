@@ -53,11 +53,17 @@ p {
     background-color: #fafafa;
     overflow: auto;
 
+    .no-transactions {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
     .transaction {
         display: flex;
         gap: 10px;
         max-height: 80px;
-        width: 460px;
         background-color: white;
         padding: 10px;
         box-shadow: 4px 4px 4px 0 rgba(34, 60, 80, 0.2);
