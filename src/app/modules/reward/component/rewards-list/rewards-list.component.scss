@@ -1,32 +1,4 @@
-:host {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
+mat-header-row,
+mat-row {
+  grid-template-columns: 1fr 1fr 300px;
 }
-
-.filter {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  padding: 10px;
-}
-
-.splitter {
-  flex: 1;
-  height: 100%;;
-}
-
-.list-container {
-  flex: 1;
-  max-height: 100%;
-  overflow: auto;
-}
-
-.mat-column-description {
-  width: 60%;
-}
-
-.mat-column-actions {
-  width: 140px;
-} 

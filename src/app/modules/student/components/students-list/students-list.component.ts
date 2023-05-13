@@ -22,7 +22,7 @@ import { StudentInfoComponent } from "../student-info/student-info.component";
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.scss'],
+  styleUrls: ['./students-list.component.scss', '../../../../+shared/styles/list.scss']
 })
 export class StudentsListComponent extends ObserverComponent implements OnInit {
   studentColumns: string[] = ['name', 'surname', 'phone', 'sum', 'actions'];

@@ -20,7 +20,7 @@ import { CertificateState } from "../../state/certificate.state";
 @Component({
   selector: 'app-certificates-list',
   templateUrl: './certificates-list.component.html',
-  styleUrls: ['./certificates-list.component.scss'],
+  styleUrls: ['./certificates-list.component.scss', '../../../../+shared/styles/list.scss'],
 })
 export class CertificatesListComponent
   extends ObserverComponent

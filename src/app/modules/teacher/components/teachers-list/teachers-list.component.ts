@@ -21,7 +21,7 @@ import { TeacherState } from "../../state/teacher.state";
 @Component({
   selector: 'app-teachers-list',
   templateUrl: './teachers-list.component.html',
-  styleUrls: ['./teachers-list.component.scss'],
+  styleUrls: ['./teachers-list.component.scss', '../../../../+shared/styles/list.scss'],
 })
 export class TeachersListComponent extends ObserverComponent implements OnInit {
   teacherColumns: string[] = ['name', 'surname', 'phone', 'actions'];

@@ -1,55 +1,50 @@
-<div class="filter">
-  <mat-form-field appearance="outline">
-    <mat-label>Описание</mat-label>
-    <input matInput placeholder="Введите описание" [formControl]="filterForm.controls['description']">
-  </mat-form-field>
+<mat-table [dataSource]="dataSource">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Минимальна сумма</mat-label>
-    <input matInput type="number" min="0" placeholder="Введите фамилию" [formControl]="filterForm.controls['minSum']">
-  </mat-form-field>
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef>
+      <span>Описание</span>
+      <mat-form-field appearance="outline">
+        <mat-label>Описание</mat-label>
+        <input matInput placeholder="Введите описание" [formControl]="filterForm.controls['description']">
+      </mat-form-field>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+  </ng-container>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Максимальная сумма</mat-label>
-    <input matInput type="number" min="0" placeholder="Введите телефон" [formControl]="filterForm.controls['maxSum']">
-  </mat-form-field>
+  <!-- Sum Column -->
+  <ng-container matColumnDef="sum">
+    <mat-header-cell *matHeaderCellDef>
+      <span>Сумма</span>
+      <mat-form-field appearance="outline">
+        <mat-label>Минимальна сумма</mat-label>
+        <input matInput type="number" min="0" placeholder="Введите фамилию" [formControl]="filterForm.controls['minSum']">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Максимальная сумма</mat-label>
+        <input matInput type="number" min="0" placeholder="Введите телефон" [formControl]="filterForm.controls['maxSum']">
+      </mat-form-field>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.sum}} </mat-cell>
+  </ng-container>
 
-  <div class="splitter"></div>
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-flat-button color="primary" (click)="onAdd()">
+        Добавить вознаграждение
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button (click)="onUpdate(row)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onDelete(row)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
 
-  <button mat-flat-button color="primary" (click)="onAdd()">
-    Добавить вознаграждение
-  </button>
-</div>
-
-<div class="list-container">
-  <table mat-table [dataSource]="dataSource">
-
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Описание</th>
-      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-    </ng-container>
-
-    <!-- Sum Column -->
-    <ng-container matColumnDef="sum">
-      <th mat-header-cell *matHeaderCellDef>Сумма на счете</th>
-      <td mat-cell *matCellDef="let row"> {{row.sum}} </td>
-    </ng-container>
-
-    <!-- Actions Column -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-icon-button (click)="onUpdate(row)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button (click)="onDelete(row)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="rewardColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: rewardColumns;"></tr>
-  </table>
-</div>
+  <mat-header-row *matHeaderRowDef="rewardColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: rewardColumns;"></mat-row>
+</mat-table>

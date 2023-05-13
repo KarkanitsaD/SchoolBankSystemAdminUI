@@ -1,35 +1,4 @@
-:host {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-  }
-  
-  .filter {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    padding: 10px;
-  }
-  
-  .splitter {
-    flex: 1;
-    height: 100%;;
-  }
-  
-  .list-container {
-    padding: 10px;
-    flex: 1;
-    max-height: 100%;
-    overflow: auto;
-  }
-
-  .mat-column-description {
-    width: 50%;
-  }  
-
-  .mat-column-price,
-  .mat-column-actions {
-    min-width: 140px;
-    width: 140px;
-  } 
+mat-header-row,
+mat-row {
+    grid-template-columns: 1fr 2fr 1fr 300px;
+}

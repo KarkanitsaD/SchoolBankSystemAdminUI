@@ -15,7 +15,7 @@ import { RewardState } from "../../state/reward.state";
 @Component({
   selector: 'app-rewards-list',
   templateUrl: './rewards-list.component.html',
-  styleUrls: ['./rewards-list.component.scss'],
+  styleUrls: ['./rewards-list.component.scss', '../../../../+shared/styles/list.scss'],
 })
 export class RewardsListComponent extends ObserverComponent implements OnInit {
   rewardColumns: string[] = ['description', 'sum', 'actions'];
