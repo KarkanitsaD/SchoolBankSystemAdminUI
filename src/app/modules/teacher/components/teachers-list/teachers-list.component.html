@@ -64,12 +64,15 @@
       <button mat-icon-button (click)="onEdit(row)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button
-              mat-icon-button
-              (click)="onDelete(row)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
+      <ng-container *ngIf="(teacher$ | async) as teacher">
+        <button
+            mat-icon-button
+            [disabled]="teacher.id === row.id"
+            (click)="onDelete(row)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
     </mat-cell>
   </ng-container>
 

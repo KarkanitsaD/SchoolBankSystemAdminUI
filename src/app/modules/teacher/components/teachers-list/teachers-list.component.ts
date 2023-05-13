@@ -4,7 +4,7 @@ import { TeacherModel } from '../../../../+shared/models/teacher.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Actions, Store, ofActionCompleted } from '@ngxs/store';
 import { ObserverComponent } from '../../../../+shared/components/observer/observer.component';
-import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, Observable, Subscription } from 'rxjs';
 import { TeacherFilterModel } from '../../../../+shared/models/teacher-filter.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/+shared/components/confirmation-dialog/confirmation-dialog.component';
@@ -17,6 +17,7 @@ import {
   UpdateTeacher
 } from "../../state/teacher-state.actions";
 import { TeacherState } from "../../state/teacher.state";
+import { AuthState } from "../../../../+shared/state/auth-state/auth.state";
 
 @Component({
   selector: 'app-teachers-list',
@@ -26,6 +27,7 @@ import { TeacherState } from "../../state/teacher.state";
 export class TeachersListComponent extends ObserverComponent implements OnInit {
   teacherColumns: string[] = ['name', 'surname', 'phone', 'actions'];
   dataSource: MatTableDataSource<TeacherModel>;
+  teacher$: Observable<TeacherModel>;
 
   filterForm: FormGroup = new FormGroup({
     name: new FormControl<string>(''),
@@ -35,6 +37,7 @@ export class TeachersListComponent extends ObserverComponent implements OnInit {
 
   constructor(private store: Store, private dialog: MatDialog, private actions: Actions) {
     super();
+    this.teacher$ = store.select(AuthState.teacher);
   }
 
   ngOnInit(): void {
