@@ -65,6 +65,11 @@ mat-table {
         }
     }
 
+    .mat-column-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+
     .mdc-data-table__cell,
     .mdc-data-table__header-cell {
         border: none;
