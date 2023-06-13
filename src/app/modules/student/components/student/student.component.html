@@ -6,16 +6,34 @@
         <mat-form-field appearance="outline">
             <mat-label>Имя</mat-label>
             <input matInput placeholder="Введите имя" [formControl]="studentForm.controls['name']">
+            <mat-error *ngIf="studentForm.controls['name'].hasError('required')">
+                Имя <strong>обязательно</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Фамилия</mat-label>
             <input matInput placeholder="Введите фамилию" [formControl]="studentForm.controls['surname']">
+            <mat-error *ngIf="studentForm.controls['surname'].hasError('required')">
+                Фамилия <strong>обязательна</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Телефон</mat-label>
             <input matInput placeholder="Введите телефон" [formControl]="studentForm.controls['phone']">
+            <mat-error *ngIf="studentForm.controls['phone'].hasError('required')">
+                Телефон <strong>обязателен</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Класс</mat-label>
+            <mat-select [formControl]="studentForm.controls['classId']">
+                <mat-option *ngFor="let class of classes$ | async" value="{{class.id}}">
+                    {{ class.name }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         <ng-container *ngIf="!data">
@@ -23,6 +41,18 @@
                 <mat-label>Пароль</mat-label>
                 <input matInput type="password" placeholder="Введите пароль"
                     [formControl]="studentForm.controls['password']">
+                <mat-error *ngIf="studentForm.controls['password'].hasError('required')">
+                    Пароль <strong>обязателен</strong>
+                </mat-error>
+                <mat-error *ngIf="studentForm.controls['password'].hasError('requiredSymbol')">
+                    Пароль должен содержать <strong>специальный символ</strong>
+                </mat-error>
+                <mat-error *ngIf="studentForm.controls['password'].hasError('minLength')">
+                    Минимальная длина <strong>6 символов</strong>
+                </mat-error>
+                <mat-error *ngIf="studentForm.controls['password'].hasError('maxLength')">
+                    Максимамльная длина <strong>20 символов</strong>
+                </mat-error>
             </mat-form-field>
         </ng-container>
         

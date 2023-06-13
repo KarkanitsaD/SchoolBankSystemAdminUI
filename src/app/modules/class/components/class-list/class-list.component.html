@@ -1,0 +1,29 @@
+<mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>
+        Класс
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-flat-button color="primary" (click)="onAdd()">
+        Добавить класс
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button (click)="onEdit(row)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onDelete(row)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="classColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: classColumns;"></mat-row>
+</mat-table>

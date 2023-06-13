@@ -38,7 +38,9 @@
                [formControl]="filterForm.controls['maxPrice']">
       </mat-form-field>
     </mat-header-cell>
-    <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+    <mat-cell *matCellDef="let row">
+      <td> {{row.price}} </td>
+    </mat-cell>
   </ng-container>
 
   <!-- Actions Column -->

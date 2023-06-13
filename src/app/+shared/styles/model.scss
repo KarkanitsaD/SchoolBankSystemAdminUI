@@ -1,0 +1,30 @@
+::ng-deep {
+    mat-form-field {
+        margin-bottom: 10px;
+    }
+
+    .mat-mdc-form-field-error-wrapper {
+        position: static;
+    }
+
+    .mat-mdc-form-field-bottom-align::before {
+        display: none;
+    }
+}
+
+mat-card {
+    padding: 20px;
+    width: 400px;
+
+    mat-card-header {
+        padding-bottom: 20px;
+    }
+
+    mat-card-actions {
+        justify-content: space-between;
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}

@@ -1,9 +1,9 @@
 <ng-container *ngIf="student">
     <div class="student">
-        <img src="assets/levi.jpg">
+        <img src="assets/me.jpg">
         <div class="info">
             <span class="name">{{ student.name + ' ' + student.surname }}</span>
-            <span class="attributes">11 A класс | {{ student.sum }} бонусов</span>
+            <span class="attributes">{{ student.class ? student.class.name : "Класс не указан" }} | {{ student.sum }} бонусов</span>
             <span class="phone">{{ student.phone }}</span>
         </div>
     </div>

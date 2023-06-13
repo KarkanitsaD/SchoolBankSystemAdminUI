@@ -1,7 +1,11 @@
-<mat-tab-group (selectedIndexChange)="onNavigate($event)">
-    <mat-tab label="Ученики"></mat-tab>
-    <mat-tab label="Учителя"></mat-tab>
-    <mat-tab label="Вознаграждения"></mat-tab>
-    <mat-tab label="Сертификаты"></mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a
+       mat-tab-link *ngFor="let link of links; let i = index"
+       (click)="onNavigate(i)"
+       [active]="activeLink === link"
+    > 
+       {{link}}
+    </a>
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 <router-outlet></router-outlet>

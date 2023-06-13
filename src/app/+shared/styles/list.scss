@@ -59,6 +59,7 @@ mat-table {
         display: grid;
         background-color: #e8e8e8;
         box-shadow: 4px 4px 3px 0 rgba(34, 60, 80, 0.2);
+        min-height: auto;
 
         &:hover {
             background-color: #f5f5f5;

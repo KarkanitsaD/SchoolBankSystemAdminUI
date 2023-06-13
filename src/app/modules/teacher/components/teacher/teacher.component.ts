@@ -5,11 +5,12 @@ import { Store } from '@ngxs/store';
 import { RegisterModel } from 'src/app/+shared/models/register.model';
 import { TeacherModel } from 'src/app/+shared/models/teacher.model';
 import { AddTeacher, UpdateTeacher } from "../../state/teacher-state.actions";
+import { passwordValidator } from 'src/app/+shared/helpers/password-validator';
 
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
-  styleUrls: ['./teacher.component.scss']
+  styleUrls: ['./teacher.component.scss', '../../../../+shared/styles/model.scss']
 })
 export class TeacherComponent implements OnInit {
   teacherForm: FormGroup;
@@ -48,7 +49,11 @@ export class TeacherComponent implements OnInit {
   }
 
   private addPasswordControl(): void {
-    const password = new FormControl<string>('', Validators.required);
+    const password = new FormControl<string>('', [
+        Validators.required,
+        passwordValidator()
+      ]
+    );
     this.teacherForm.addControl('password', password);
   }
 }

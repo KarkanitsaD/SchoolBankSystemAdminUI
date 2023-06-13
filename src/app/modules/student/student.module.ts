@@ -15,6 +15,7 @@ import { StudentInfoComponent } from "./components/student-info/student-info.com
 import { MatLegacyTabsModule } from "@angular/material/legacy-tabs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         NgxsModule.forFeature([StudentState]),
         MatLegacyTabsModule,
         MatProgressSpinnerModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSelectModule
     ]
 })
 export class StudentModule {

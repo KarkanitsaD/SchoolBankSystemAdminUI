@@ -8,7 +8,7 @@ import { AddCertificate, UpdateCertificate } from "../../state/certificate-state
 @Component({
     selector: 'app-certificate',
     templateUrl: './certificate.component.html',
-    styleUrls: ['./certificate.component.scss']
+    styleUrls: ['./certificate.component.scss', '../../../../+shared/styles/model.scss']
 })
 export class CertificateComponent implements OnInit {
     certificateForm: FormGroup;

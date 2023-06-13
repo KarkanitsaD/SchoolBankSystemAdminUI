@@ -1,4 +1,5 @@
 import { CertificatePurchaseModel } from "./certificate-purchase.model";
+import { ClassModel } from "./class.model";
 import { MoneyTransferModel } from "./money-transfer.model";
 import { StudentRewardModel } from "./student-reward.model";
 
@@ -8,6 +9,8 @@ export class StudentModel {
   surname: string;
   phone: string;
   sum: number;
+  classId: string;
+  class: ClassModel;
   certificatePurchases: CertificatePurchaseModel[];
   moneyTransfersFromStudent: MoneyTransferModel[];
   moneyTransfersToStudent: MoneyTransferModel[];

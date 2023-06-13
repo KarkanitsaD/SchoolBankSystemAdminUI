@@ -31,6 +31,8 @@ import {RewardApiService} from "./+shared/services/reward-api.service";
 import {CertificateApiService} from "./+shared/services/certificate-api.service";
 import { ConfirmationDialogComponent } from './+shared/components/confirmation-dialog/confirmation-dialog.component';
 import { RewardState } from "./modules/reward/state/reward.state";
+import { AdministrationModule } from './modules/administration/administration.module';
+import { ClassApiService } from './+shared/services/class-api.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ConfirmationDialogComponent],
@@ -54,6 +56,7 @@ import { RewardState } from "./modules/reward/state/reward.state";
     MatTableModule,
     StudentModule,
     CertificateModule,
+    AdministrationModule
   ],
   providers: [
     ApiService,
@@ -63,6 +66,7 @@ import { RewardState } from "./modules/reward/state/reward.state";
     TeacherApiService,
     RewardApiService,
     CertificateApiService,
+    ClassApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpHeadersInterceptor,

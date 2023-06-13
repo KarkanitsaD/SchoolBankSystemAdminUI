@@ -6,16 +6,25 @@
         <mat-form-field appearance="outline">
             <mat-label>Имя</mat-label>
             <input matInput placeholder="Введите имя" [formControl]="teacherForm.controls['name']">
+            <mat-error *ngIf="teacherForm.controls['name'].hasError('required')">
+                Имя <strong>обязательно</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Фамилия</mat-label>
             <input matInput placeholder="Введите фамилию" [formControl]="teacherForm.controls['surname']">
+            <mat-error *ngIf="teacherForm.controls['surname'].hasError('required')">
+                Фамилия <strong>обязательна</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Телефон</mat-label>
             <input matInput placeholder="Введите телефон" [formControl]="teacherForm.controls['phone']">
+            <mat-error *ngIf="teacherForm.controls['phone'].hasError('required')">
+                Телефон <strong>обязателен</strong>
+            </mat-error>
         </mat-form-field>
 
         <ng-container *ngIf="!data">
@@ -23,6 +32,18 @@
                 <mat-label>Пароль</mat-label>
                 <input matInput type="password" placeholder="Введите пароль"
                     [formControl]="teacherForm.controls['password']">
+                <mat-error *ngIf="teacherForm.controls['password'].hasError('required')">
+                    Пароль <strong>обязателен</strong>
+                </mat-error>
+                <mat-error *ngIf="teacherForm.controls['password'].hasError('requiredSymbol')">
+                    Пароль должен содержать <strong>специальный символ</strong>
+                </mat-error>
+                 <mat-error *ngIf="teacherForm.controls['password'].hasError('minLength')">
+                    Минимальная длина <strong>6 символов</strong>
+                </mat-error>
+                <mat-error *ngIf="teacherForm.controls['password'].hasError('maxLength')">
+                    Максимамльная длина <strong>20 символов</strong>
+                </mat-error>
             </mat-form-field>
         </ng-container>
         

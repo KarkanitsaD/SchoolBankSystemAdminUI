@@ -14,11 +14,14 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Описание</mat-label>
-            <input
-                matInput
+            <textarea matInput
+                cdkTextareaAutosize
                 placeholder="Введите описание"
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="20"
                 [formControl]="certificateForm.controls['description']"
-            >
+            ></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

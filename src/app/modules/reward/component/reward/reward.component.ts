@@ -8,7 +8,7 @@ import { AddReward, UpdateReward } from "../../state/reward-state.actions";
 @Component({
   selector: 'app-reward',
   templateUrl: './reward.component.html',
-  styleUrls: ['./reward.component.scss']
+  styleUrls: ['./reward.component.scss', '../../../../+shared/styles/model.scss']
 })
 export class RewardComponent implements OnInit {
   rewardForm: FormGroup;

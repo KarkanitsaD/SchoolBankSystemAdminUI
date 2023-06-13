@@ -6,14 +6,21 @@ import { RegisterModel } from 'src/app/+shared/models/register.model';
 import { StudentModel } from 'src/app/+shared/models/student.model';
 import { TeacherComponent } from 'src/app/modules/teacher/components/teacher/teacher.component';
 import { AddStudent, UpdateStudent } from "../../state/student-state.actions";
+import { passwordValidator } from 'src/app/+shared/helpers/password-validator';
+import { LoadClasses } from 'src/app/modules/administration/state/class-state/class-state.actions';
+import { ClassModel } from 'src/app/+shared/models/class.model';
+import { Observable } from 'rxjs';
+import { ClassState } from 'src/app/modules/administration/state/class-state/class.state';
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss']
+  styleUrls: ['../../../../+shared/styles/model.scss']
 })
 export class StudentComponent {
   studentForm: FormGroup;
+
+  classes$: Observable<ClassModel[]>;
 
   constructor(
     private dialogRef: MatDialogRef<TeacherComponent>,
@@ -25,8 +32,11 @@ export class StudentComponent {
     this.studentForm = new FormGroup({
       name: new FormControl<string>(this.data ? this.data.name : '', Validators.required),
       surname: new FormControl<string>(this.data ? this.data.surname : '', Validators.required),
-      phone: new FormControl<string>(this.data ? this.data.phone : '', Validators.required)
+      phone: new FormControl<string>(this.data ? this.data.phone : '', Validators.required),
+      classId: new FormControl<string>(this.data ? this.data.classId : '')
     });
+    this.classes$ = this.store.select(ClassState.classes);
+    this.store.dispatch(new LoadClasses());
 
     if (!this.data) {
       this.addPasswordControl();
@@ -39,6 +49,7 @@ export class StudentComponent {
 
   onApply(): void {
     const formValue = this.studentForm.value;
+    debugger
     if (this.data) {
       formValue.id = this.data.id;
       this.store.dispatch(new UpdateStudent(new StudentModel(formValue)));
@@ -49,7 +60,11 @@ export class StudentComponent {
   }
 
   private addPasswordControl(): void {
-    const password = new FormControl<string>('', Validators.required);
+    const password = new FormControl<string>('', [
+        Validators.required,
+        passwordValidator()
+      ]
+    );
     this.studentForm.addControl('password', password);
   }
 }
