@@ -25,7 +25,7 @@ import { StudentInfoComponent } from "../student-info/student-info.component";
   styleUrls: ['./students-list.component.scss', '../../../../+shared/styles/list.scss']
 })
 export class StudentsListComponent extends ObserverComponent implements OnInit {
-  studentColumns: string[] = ['name', 'surname', 'phone', 'sum', 'actions'];
+  studentColumns: string[] = ['image', 'name', 'surname', 'phone', 'sum', 'actions'];
   dataSource: MatTableDataSource<StudentModel>;
 
   filterForm: FormGroup = new FormGroup({

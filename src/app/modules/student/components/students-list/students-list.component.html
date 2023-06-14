@@ -1,6 +1,16 @@
 <mat-table [dataSource]="dataSource">
 
   <!-- Name Column -->
+  <ng-container matColumnDef="image">
+    <mat-header-cell *matHeaderCellDef>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <img *ngIf="row.imageId" [src]="'https://localhost:7249/api/file/' + row.imageId">
+      <img *ngIf="!row.imageId" src="assets/user.png">
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>
       <span>Имя</span>

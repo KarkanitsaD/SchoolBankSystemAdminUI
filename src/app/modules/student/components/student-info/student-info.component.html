@@ -1,6 +1,7 @@
 <ng-container *ngIf="student">
     <div class="student">
-        <img src="assets/me.jpg">
+        <img *ngIf="!student.imageId" src="assets/user.png">
+        <img *ngIf="student.imageId" [src]="'https://localhost:7249/api/file/' + student.imageId">
         <div class="info">
             <span class="name">{{ student.name + ' ' + student.surname }}</span>
             <span class="attributes">{{ student.class ? student.class.name : "Класс не указан" }} | {{ student.sum }} бонусов</span>

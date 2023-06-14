@@ -79,6 +79,6 @@ import { ClassApiService } from './+shared/services/class-api.service';
     },
     AuthGuard,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

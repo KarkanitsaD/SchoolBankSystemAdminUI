@@ -3,6 +3,12 @@
         {{data ? 'Изменить' : 'Добавить'}} ученика
     </mat-card-header>
     <mat-card-content>
+        <app-image-uploader
+            [imageSrc]="studentForm.controls['imageId'].value ?
+             'https://localhost:7249/api/file/' + studentForm.controls['imageId'].value :
+              ''"
+            (imageUpload)="onImageUpload($event)"
+        ></app-image-uploader>
         <mat-form-field appearance="outline">
             <mat-label>Имя</mat-label>
             <input matInput placeholder="Введите имя" [formControl]="studentForm.controls['name']">

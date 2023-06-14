@@ -16,6 +16,7 @@ import { MatLegacyTabsModule } from "@angular/material/legacy-tabs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatSelectModule } from '@angular/material/select';
+import { ImageUploaderComponent } from "../../+shared/components/image-uploader/image-uploader.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatLegacyTabsModule,
         MatProgressSpinnerModule,
         MatTooltipModule,
-        MatSelectModule
+        MatSelectModule,
+        ImageUploaderComponent
     ]
 })
 export class StudentModule {

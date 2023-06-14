@@ -61,6 +61,14 @@ mat-table {
         box-shadow: 4px 4px 3px 0 rgba(34, 60, 80, 0.2);
         min-height: auto;
 
+        mat-cell img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid;
+        }
+
         &:hover {
             background-color: #f5f5f5;
         }

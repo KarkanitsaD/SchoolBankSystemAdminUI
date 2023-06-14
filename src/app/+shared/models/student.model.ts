@@ -10,6 +10,9 @@ export class StudentModel {
   phone: string;
   sum: number;
   classId: string;
+  imageId: string;
+  imageBase64: string;
+  imageExtension: string;
   class: ClassModel;
   certificatePurchases: CertificatePurchaseModel[];
   moneyTransfersFromStudent: MoneyTransferModel[];

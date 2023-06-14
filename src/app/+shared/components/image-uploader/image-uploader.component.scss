@@ -1,0 +1,49 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 1px solid #ced6e1;
+        object-fit: cover;
+    }
+
+    .actions {
+        width: 0;
+        height: 0;
+
+        button {
+            width: 0;
+            height: 0;
+            position: relative;
+            background: aliceblue;
+            border: 1px solid #ced6e1;
+
+            &.upload-btn {
+                bottom: 188px;
+                left: 63px;
+            }
+
+            &.reset-btn {
+                bottom: 230px;
+                right: 90px;
+            }
+
+            mat-icon {
+                position: relative;
+                font-size: 18px;
+                bottom: 9px;
+                right: 12px;
+            }
+        }
+    }
+
+    input {
+        display: none;
+    }
+}

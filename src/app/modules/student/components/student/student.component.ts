@@ -11,6 +11,7 @@ import { LoadClasses } from 'src/app/modules/administration/state/class-state/cl
 import { ClassModel } from 'src/app/+shared/models/class.model';
 import { Observable } from 'rxjs';
 import { ClassState } from 'src/app/modules/administration/state/class-state/class.state';
+import { FileModel } from "../../../../+shared/models/file.model";
 
 @Component({
   selector: 'app-student',
@@ -33,7 +34,10 @@ export class StudentComponent {
       name: new FormControl<string>(this.data ? this.data.name : '', Validators.required),
       surname: new FormControl<string>(this.data ? this.data.surname : '', Validators.required),
       phone: new FormControl<string>(this.data ? this.data.phone : '', Validators.required),
-      classId: new FormControl<string>(this.data ? this.data.classId : '')
+      classId: new FormControl<string>(this.data ? this.data.classId : ''),
+      imageId: new FormControl<string>(this.data ? this.data.imageId : null),
+      imageBase64: new FormControl<string>(''),
+      imageExtension: new FormControl<string>('')
     });
     this.classes$ = this.store.select(ClassState.classes);
     this.store.dispatch(new LoadClasses());
@@ -41,6 +45,14 @@ export class StudentComponent {
     if (!this.data) {
       this.addPasswordControl();
     }
+  }
+
+  onImageUpload(file: FileModel): void {
+    this.studentForm.controls['imageId'].setValue(null);
+    this.studentForm.controls['imageBase64'].setValue(file.base64);
+    this.studentForm.controls['imageExtension'].setValue(file.extension);
+    this.studentForm.markAsDirty();
+    console.log(this.studentForm);
   }
 
   onCancel(): void {

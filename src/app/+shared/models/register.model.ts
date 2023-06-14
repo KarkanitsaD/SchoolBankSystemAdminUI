@@ -3,6 +3,8 @@ export class RegisterModel {
     surname: string;
     phone: string;
     password: string;
+    base64: string;
+    extension: string;
 
     constructor(public init?: Partial<RegisterModel>) {
         if (init) {
