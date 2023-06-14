@@ -18,7 +18,7 @@ import { RewardState } from "../../state/reward.state";
   styleUrls: ['./rewards-list.component.scss', '../../../../+shared/styles/list.scss'],
 })
 export class RewardsListComponent extends ObserverComponent implements OnInit {
-  rewardColumns: string[] = ['description', 'sum', 'actions'];
+  rewardColumns: string[] = ['description', 'sum', 'createDate', 'updateDate', 'actions'];
   dataSource: MatTableDataSource<RewardModel>;
 
   filterForm: FormGroup = new FormGroup({

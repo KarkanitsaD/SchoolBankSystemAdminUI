@@ -43,6 +43,22 @@
     </mat-cell>
   </ng-container>
 
+  <!-- CreateTime Column -->
+  <ng-container matColumnDef="createDate">
+    <mat-header-cell *matHeaderCellDef>
+      <span>Дата создания</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.createTime | date: 'dd/MM/yyyy hh:mm'}} </mat-cell>
+  </ng-container>
+
+  <!-- UpdateTime Column -->
+  <ng-container matColumnDef="updateDate">
+    <mat-header-cell *matHeaderCellDef>
+      <span>Дата обновления</span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.updateTime | date: 'dd/MM/yyyy hh:mm'}} </mat-cell>
+  </ng-container>
+
   <!-- Actions Column -->
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>

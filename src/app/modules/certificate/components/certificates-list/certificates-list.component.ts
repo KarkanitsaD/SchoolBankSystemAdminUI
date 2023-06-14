@@ -26,7 +26,7 @@ export class CertificatesListComponent
   extends ObserverComponent
   implements OnInit
 {
-  certificateColumns: string[] = ['title', 'description', 'price', 'actions'];
+  certificateColumns: string[] = ['title', 'description', 'price', 'createDate', 'updateDate', 'actions'];
   dataSource: MatTableDataSource<CertificateModel>;
 
   filterForm: FormGroup = new FormGroup({

@@ -3,6 +3,8 @@ export class CertificateModel {
   title: string;
   description: string;
   price: number;
+  createTime: number;
+  updateTimeNumber: number;
 
   constructor(init?: Partial<CertificateModel>) {
     if (init) {
